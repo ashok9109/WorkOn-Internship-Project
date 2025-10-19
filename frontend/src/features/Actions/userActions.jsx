@@ -1,11 +1,11 @@
-import { axiosInstance} from "../../config/axiosinstance";
+import { axiosInstance } from "../../config/axiosinstance";
 import { addUser } from "../Reducers/userSlice";
 
 
-export const userSignupApi = (Data) => async(dispatch) =>{
+export const userSignupApi = (Data) => async (dispatch) => {
     try {
         const respones = await axiosInstance.post("/api/user/signup", Data);
-        if(respones){
+        if (respones) {
             dispatch(addUser(respones.data.user));
         }
     } catch (error) {
@@ -13,11 +13,12 @@ export const userSignupApi = (Data) => async(dispatch) =>{
     }
 };
 
-export const userLoginApi = (Data) => async(dispatch)=>{
+export const userLoginApi = (Data) => async (dispatch) => {
+    console.log("api login user", Data)
     try {
         const respones = await axiosInstance.post("/api/user/login", Data)
-        if(respones){
-            return respones.data.user;
+        if (respones) {
+            dispatch(addUser(respones.data.user));
         }
     } catch (error) {
         console.log("error in login api", error)

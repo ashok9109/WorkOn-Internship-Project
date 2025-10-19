@@ -22,7 +22,7 @@ const App = () => {
         console.log("/me api error", error)
       }
     })()
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>

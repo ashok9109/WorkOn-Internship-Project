@@ -20,7 +20,7 @@ const LoginPage = ({ setToggle }) => {
       ...data, role
     }
     const respones = await dispatch(userLoginApi(userData));
-    if(respones){
+    if (respones) {
       console.log("user is login");
       navigate("/home")
     }
@@ -39,17 +39,17 @@ const LoginPage = ({ setToggle }) => {
             <h1 className="font-bold text-3xl" >Login</h1>
             <div className="flex gap-10 mt-4 " >
               <button
-              type="button"
-              onClick={()=>setrole("job seeker")}
-              className={`px-5 py-1 rounded-sm border-1
-              ${role === "job seeker" ? "bg-[#175898]" : "bg-[#CBF1EE]" }
+                type="button"
+                onClick={() => setrole("job seeker")}
+                className={`px-5 py-1 rounded-sm border-1
+              ${role === "job seeker" ? "bg-[#175898]" : "bg-[#CBF1EE]"}
               `}
               >Job Seeker</button>
-              <button 
-              type="button"
-              onClick={()=>setrole("employer")}
-              className={`px-5 py-1  rounded-sm border-1
-              ${role === "employer" ? "bg-[#175898]" : "bg-[#CBF1EE]" }
+              <button
+                type="button"
+                onClick={() => setrole("employer")}
+                className={`px-5 py-1  rounded-sm border-1
+              ${role === "employer" ? "bg-[#175898]" : "bg-[#CBF1EE]"}
               `}
               >Employer</button>
             </div>

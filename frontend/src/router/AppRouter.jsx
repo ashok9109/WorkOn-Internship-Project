@@ -17,41 +17,41 @@ const AppRouter = () => {
       element: <UserLayout />
     },
     {
-    path: "/home",
-    element: <ProtectedRoutes />,
-    children: [
-    {
-      path: "",
-      element: <HomeLayout />,
+      path: "/home",
+      element: <ProtectedRoutes />,
       children: [
         {
           path: "",
-          element: <HomePage />
-        },
-        {
-          path:"dashboard",
-          element:<DashboardPage/>
-        },
-        {
-          path:"profile",
-          element:<ProfilePage/>
-        },
-        {
-          path:"settings",
-          element:<SettingsPage/>
-        },
-        {
-          path: "messages",
-          element: <MessagesLayout />,
+          element: <HomeLayout />,
           children: [
             {
-              path: "chat",
-              element: <MessagePage />
+              path: "",
+              element: <HomePage />
+            },
+            {
+              path: "dashboard",
+              element: <DashboardPage />
+            },
+            {
+              path: "profile",
+              element: <ProfilePage />
+            },
+            {
+              path: "settings",
+              element: <SettingsPage />
+            },
+            {
+              path: "messages",
+              element: <MessagesLayout />,
+              children: [
+                {
+                  path: "chat",
+                  element: <MessagePage />
+                }
+              ]
             }
           ]
         }
-      ]
-      }
       ]
     }
   ])

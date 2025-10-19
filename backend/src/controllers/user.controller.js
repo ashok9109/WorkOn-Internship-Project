@@ -77,6 +77,8 @@ const loginController = async (req, res) => {
             email
             // $or: [{ email }, { username }, { mobile }]
         });
+       
+        console.log("backend user", user)
 
         if (!user) {
             return res.status(404).json({
