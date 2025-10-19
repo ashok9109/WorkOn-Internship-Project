@@ -1,0 +1,134 @@
+import { userSignupApi } from "../features/Actions/userActions";
+import bgimage from "../images/bg-login.jpg"
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+
+
+
+const SignupPage = ({ setToggle }) => {
+
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const [role, setrole] = useState("Job Seeker");
+  
+
+  const dispatch = useDispatch();
+
+  const onSubmit = async (data) => {
+     const userData = {
+      ...data, role
+    }
+   const res = await dispatch(userSignupApi(userData))
+   if(res){
+    console.log("user is Registered")
+   }
+  }
+
+  return (
+    <>
+      <div className=' h-screen w-screen flex items-center justify-center shadow-lg ' >
+        <img
+          className='h-screen w-screen absolute bg-cover bg-center'
+          src={bgimage} alt="" />
+        <div className='h-150 w-130 rounded-sm bg-[#59BDBB] z-[999]' >
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className='h-[88%] w-full flex flex-col items-center justify-center  ' >
+            <h1 className="font-bold text-3xl" >Register</h1>
+             <div className="flex gap-10 mt-4 " >
+              <button
+              type="button"
+              onClick={()=>setrole("Job Seeker")}
+              className={`px-5 py-1 rounded-sm border-1
+              ${role === "Job Seeker" ? "bg-[#175898]" : "bg-[#CBF1EE]" }
+              `}
+              >Job Seeker</button>
+              <button 
+              type="button"
+              onClick={()=>setrole("Employer")}
+              className={`px-5 py-1  rounded-sm border-1
+              ${role === "Employer" ? "bg-[#175898]" : "bg-[#CBF1EE]" }
+              `}
+              >Employer</button>
+            </div>
+            <div className="flex items-center justify-center gap-4 pt-3 ">
+              <h1 className="text-xl" ><i className="ri-mail-fill"></i></h1>
+              <input
+                {...register("email", { required: "Email is required" })}
+                className='border-2 border-black px-5 py-2 rounded-lg outline-none'
+                placeholder='email'
+                type="email" />
+            </div>
+            {errors.email && (
+              <span className="text-red-500" >{errors.email.message}</span>
+            )}
+            <div className="flex items-center justify-center gap-4 pt-3 ">
+              <h1 className="text-xl" ><i className="ri-cellphone-fill"></i></h1>
+              <input
+                {...register("mobile", { required: "Mobile number is required" })}
+                className='border-2 border-black px-5 py-2 rounded-lg outline-none'
+                placeholder='Mobile'
+                type="numder" />
+            </div>
+            {errors.mobile && (
+              <span className="text-red-500" >{errors.mobile.message}</span>
+            )}
+            <div className="flex items-center justify-center gap-4 pt-3 ">
+              <h1 className="text-xl" ><i className="ri-lock-fill"></i></h1>
+              <input
+                {...register("password", { required: "Password is required" })}
+                className='border-2 border-black px-5 py-2 rounded-lg outline-none'
+                placeholder='password'
+                type="password" />
+            </div>
+            {errors.password && (
+              <span className="text-red-500" >{errors.password.message}</span>
+            )}
+            <div className="flex items-center justify-center gap-4 pt-3 ">
+              <h1 className="text-xl" ><i className="ri-user-fill"></i></h1>
+              <input
+                {...register("fullName", { required: "Full name is required" })}
+                className='border-2 border-black px-5 py-2 rounded-lg outline-none'
+                placeholder='Full Name'
+                type="text" />
+            </div>
+            {errors.fullName && (
+              <span className="text-red-500" >{errors.fullName.message}</span>
+            )}
+            <div className="flex items-center justify-center gap-4 pt-3 pb-3 " >
+              <h1 className="text-xl" ><i className="ri-user-fill"></i></h1>
+              <input
+                {...register("username", { required: "Username is required" })}
+                className='border-2 border-black px-5 py-2 rounded-lg outline-none'
+                placeholder='username'
+                type="text" />
+            </div>
+            {errors.username && (
+              <span className="text-red-500" >{errors.username.message}</span>
+            )}
+            <button
+              className='border-2 px-8 py-2 rounded-sm font-bold text-white bg-black'
+            >Sign Up</button>
+          </form>
+          <div className="flex items-center justify-center " >
+            <h1 className="text-4xl" ><i className="ri-facebook-box-fill"></i></h1>
+            <h1 className="text-4xl" ><i className="ri-instagram-fill"></i></h1>
+            <h1 className="text-4xl" ><i className="ri-google-fill"></i></h1>
+          </div>
+          <div className="flex flex-col items-center justify-center text-center z-[999]" >
+            <span className="flex gap-2 " >
+              Have an account?
+              <p
+                className="text-blue-800"
+                onClick={() => setToggle((prev) => !prev)}
+              >login</p>
+            </span>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default SignupPage;
