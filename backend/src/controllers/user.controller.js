@@ -1,6 +1,7 @@
 const userModel = require("../models/user.model");
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
+const cacheClient = require("../services/cache.services");
 
 // sign Up User Controller
 
@@ -77,8 +78,6 @@ const loginController = async (req, res) => {
             // $or: [{ email }, { username }, { mobile }]
         });
 
-        console.log("backend user", user)
-
         if (!user) {
             return res.status(404).json({
                 message: "user not found"
@@ -125,13 +124,13 @@ const logoutController = async (req, res) => {
     try {
         const token = req.cookies?.token
 
-        console.log("backend token", token)
-
         if (!token) {
             return res.status(404).json({
                 message: "Token is not found"
             })
         }
+
+        await cacheClient.set(token, "blacklisted")
 
         res.clearCookie("token");
 
@@ -142,7 +141,7 @@ const logoutController = async (req, res) => {
         console.log("error in logout", error)
         return res.status(500).json({
             message: "Internal server error",
-            error:error
+            error: error
         })
     }
 };

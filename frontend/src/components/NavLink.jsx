@@ -33,7 +33,7 @@ const NavLink = () => {
     }
 
     return (
-        <div className='h-screen w-60 flex  flex-col gap-4 bg-green-200 pt-5 pl-3' >
+        <div className='h-screen w-60 flex  flex-col gap-4 bg-gray-200 pt-5 pl-3' >
             {navLink.map(({ label, icon: Icon, to }, idx) => (
                 <RouterNavLink
                     key={label}

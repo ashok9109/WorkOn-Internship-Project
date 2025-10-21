@@ -6,15 +6,12 @@ import { axiosInstance } from "./config/axiosinstance";
 
 const App = () => {
 
-
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     (async () => {
       try {
         const res = await axiosInstance.get("/api/user/me");
-        console.log("res if /me", res.data.user)
         if (res) {
           dispatch(addUser(res?.data?.user))
         }
