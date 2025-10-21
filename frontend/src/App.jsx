@@ -27,7 +27,7 @@ const App = () => {
   return (
     <div>
       <div className="h-10 w-60 flex items-center pl-10 font-bold absolute z-[999] " >
-        <h1 className="text-3xl bg-[#5FBDC0] px-4  py-2" >Work-<span className="text-red-500" >On</span></h1>
+        <h1 className="text-3xl bg-white rounded-sm px-4  py-2" >Work-<span className="text-red-500" >On</span></h1>
       </div>
       <AppRouter />
     </div>

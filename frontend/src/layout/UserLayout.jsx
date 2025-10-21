@@ -12,9 +12,6 @@ const UserLayout = () => {
 
     const { user, isLoggedin } = useSelector((state) => state.user);
 
-
-    console.log("userlayout data", user)
-
     useEffect(() => {
         if (user !== null && isLoggedin) {
             navigate("/home")

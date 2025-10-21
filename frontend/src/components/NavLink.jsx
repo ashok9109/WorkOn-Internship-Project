@@ -1,6 +1,8 @@
 import React from 'react'
 import { Home, LayoutDashboard, Send, Settings, User, } from "lucide-react"
 import { NavLink as RouterNavLink, useLocation, useNavigate, } from "react-router";
+import { useDispatch } from "react-redux";
+import { userLogoutApi } from '../features/Actions/userActions';
 
 
 const navLink = [
@@ -15,19 +17,37 @@ const navLink = [
 
 
 const NavLink = () => {
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const logoutUser = async () => {
+        try {
+            dispatch(userLogoutApi());
+            alert("user is logout");
+            navigate("/")
+
+        } catch (error) {
+            console.log("error in logout", error);
+        }
+    }
+
     return (
         <div className='h-screen w-60 flex  flex-col gap-4 bg-green-200 pt-5 pl-3' >
             {navLink.map(({ label, icon: Icon, to }, idx) => (
-                <RouterNavLink 
-                key={label}
-                to={to}
-                 >
-                 <div className='flex gap-2' >
-                 <Icon/>
-                    <span>{label}</span>
-                 </div>
+                <RouterNavLink
+                    key={label}
+                    to={to}
+                >
+                    <div className='flex gap-2' >
+                        <Icon />
+                        <span>{label}</span>
+                    </div>
                 </RouterNavLink>
             ))}
+            <button
+                onClick={logoutUser}
+            >LogOut</button>
         </div>
     )
 }

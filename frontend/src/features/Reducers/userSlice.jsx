@@ -5,22 +5,21 @@ const userSlice = createSlice({
     name: "user",
     initialState: {
         user: null,
-        isLoggedin:false
+        isLoggedin: false
     },
 
-    reducers:{
-        addUser : (state, action)=>{
+    reducers: {
+        addUser: (state, action) => {
             state.user = action.payload,
-            state.isLoggedin = true
-            console.log("userSlice user data", state.user)
+                state.isLoggedin = true
         },
-        removeUser : (state)=>{
+        removeUser: (state) => {
             state.user = null,
-            state.isLoggedin = false
+                state.isLoggedin = false
         }
     }
 });
 
-export const {addUser,isLoggedin, removeUser} = userSlice.actions;
+export const { addUser, isLoggedin, removeUser } = userSlice.actions;
 
 export default userSlice.reducer;

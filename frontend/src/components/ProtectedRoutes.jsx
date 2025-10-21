@@ -7,14 +7,12 @@ const ProtectedRoutes = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, isloggedin } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
 
-  console.log("protected route user", user)
-
-  useEffect(()=>{
-    if(user){
+  useEffect(() => {
+    if (user) {
       navigate("/home")
-    }else{
+    } else {
       navigate("/")
     }
   }, [user, dispatch])

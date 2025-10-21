@@ -48,11 +48,11 @@ const signupController = async (req, res) => {
 
         return res.status(201).json({
             message: "User is Registered Successfully",
-            newUser:{
-                id:newUser.id,
-                fullName:newUser.fullName,
-                username:newUser.username,
-                role:newUser.role
+            newUser: {
+                id: newUser.id,
+                fullName: newUser.fullName,
+                username: newUser.username,
+                role: newUser.role
             }
         })
 
@@ -71,13 +71,12 @@ const loginController = async (req, res) => {
     try {
 
         const { email, username, mobile, password, role } = req.body;
-        console.log( "backend login data ", email)
 
         const user = await userModel.findOne({
             email
             // $or: [{ email }, { username }, { mobile }]
         });
-       
+
         console.log("backend user", user)
 
         if (!user) {
@@ -104,11 +103,11 @@ const loginController = async (req, res) => {
 
         return res.status(200).json({
             message: "User is LoggedIn",
-            user:{
-                id:user.id,
-                fullName:user.fullName,
-                username:user.username,
-                role:user.role
+            user: {
+                id: user.id,
+                fullName: user.fullName,
+                username: user.username,
+                role: user.role
 
             }
         });
@@ -117,7 +116,36 @@ const loginController = async (req, res) => {
         console.log("error in login ", error);
     }
 
-}
+};
+
+// logout user controller
+
+const logoutController = async (req, res) => {
+
+    try {
+        const token = req.cookies?.token
+
+        console.log("backend token", token)
+
+        if (!token) {
+            return res.status(404).json({
+                message: "Token is not found"
+            })
+        }
+
+        res.clearCookie("token");
+
+        return res.status(200).json({
+            message: "user is logout "
+        })
+    } catch (error) {
+        console.log("error in logout", error)
+        return res.status(500).json({
+            message: "Internal server error",
+            error:error
+        })
+    }
+};
 
 
-module.exports = { signupController, loginController };
+module.exports = { signupController, loginController, logoutController };

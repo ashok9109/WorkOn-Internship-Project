@@ -1,5 +1,5 @@
 import { axiosInstance } from "../../config/axiosinstance";
-import { addUser } from "../Reducers/userSlice";
+import { addUser, removeUser } from "../Reducers/userSlice";
 
 
 export const userSignupApi = (Data) => async (dispatch) => {
@@ -14,7 +14,6 @@ export const userSignupApi = (Data) => async (dispatch) => {
 };
 
 export const userLoginApi = (Data) => async (dispatch) => {
-    console.log("api login user", Data)
     try {
         const respones = await axiosInstance.post("/api/user/login", Data)
         if (respones) {
@@ -22,5 +21,16 @@ export const userLoginApi = (Data) => async (dispatch) => {
         }
     } catch (error) {
         console.log("error in login api", error)
+    }
+};
+
+export const userLogoutApi = ()=> async(dispatch)=>{
+    try {
+        const respones = await axiosInstance.post("api/user/logout");
+        if(respones){
+            dispatch(removeUser());
+        }
+    } catch (error) {
+        console.log("error in logout api", error)
     }
 }

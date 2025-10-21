@@ -76,19 +76,19 @@ const LoginPage = ({ setToggle }) => {
               <span className="text-red-500" >{errors.password.message}</span>
             )}
             <button
-              className='border-2 px-8 py-2 rounded-sm font-bold text-white bg-black mt-5'
+              className='border-2 px-8 py-2 rounded-sm font-bold text-white bg-black mt-5 hover:bg-[#CBF1EE] hover:text-black '
             >Login </button>
           </form>
-          <div className="flex items-center justify-center " >
-            <h1 className="text-4xl" ><i className="ri-facebook-box-fill"></i></h1>
-            <h1 className="text-4xl" ><i className="ri-instagram-fill"></i></h1>
-            <h1 className="text-4xl" ><i className="ri-google-fill"></i></h1>
+          <div className="flex items-center justify-center gap-2 " >
+            <h1 className="text-4xl  hover:text-3xl " ><i className="ri-facebook-box-fill"></i></h1>
+            <h1 className="text-4xl  hover:text-3xl " ><i className="ri-instagram-fill"></i></h1>
+            <h1 className="text-4xl  hover:text-3xl " ><i className="ri-google-fill"></i></h1>
           </div>
           <div className="flex flex-col items-center justify-center text-center z-[999]" >
             <span className="flex gap-2 " >
               Don't have an account?
               <p
-                className="text-blue-800"
+                className="text-blue-800 "
                 onClick={() => setToggle((prev) => !prev)}
               >Sign Up</p>
             </span>
