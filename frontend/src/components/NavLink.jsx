@@ -20,6 +20,7 @@ const NavLink = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const location = useLocation()
 
     const logoutUser = async () => {
         try {
@@ -33,19 +34,22 @@ const NavLink = () => {
     }
 
     return (
-        <div className='h-screen w-60 flex  flex-col gap-4 bg-gray-200 pt-5 pl-3' >
+        <div className='h-screen w-60 flex  flex-col  gap-10 bg-[#FFFFFF] pt-5 pl-3' >
             {navLink.map(({ label, icon: Icon, to }, idx) => (
                 <RouterNavLink
                     key={label}
                     to={to}
+                    className={({ isActive }) => `flex gap-5 text-xl font-semibold ${to === location.pathname
+                        ? "text-sky-700" : ""
+                        }`}
                 >
-                    <div className='flex gap-2' >
-                        <Icon />
-                        <span>{label}</span>
-                    </div>
+                    <Icon />
+                    <span>{label}</span>
+
                 </RouterNavLink>
             ))}
             <button
+                className='font-semibold text-xl text-red-600 underline '
                 onClick={logoutUser}
             >LogOut</button>
         </div>

@@ -76,7 +76,7 @@ const LoginPage = ({ setToggle }) => {
               <span className="text-red-500" >{errors.password.message}</span>
             )}
             <button
-              className='border-2 px-8 py-2 rounded-sm font-bold text-white bg-black mt-5 hover:bg-[#CBF1EE] hover:text-black '
+              className='border-2 px-8 py-2 rounded-sm font-bold text-white bg-black mt-5 cursor-pointer hover:bg-[#CBF1EE] hover:text-black '
             >Login </button>
           </form>
           <div className="flex items-center justify-center gap-2 " >

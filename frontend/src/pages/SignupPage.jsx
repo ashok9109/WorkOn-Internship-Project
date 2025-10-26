@@ -108,7 +108,7 @@ const SignupPage = ({ setToggle }) => {
               <span className="text-red-500" >{errors.username.message}</span>
             )}
             <button
-              className='border-2 px-8 py-2 rounded-sm font-bold text-white bg-black hover:bg-[#CBF1EE] hover:text-black '
+              className='border-2 px-8 py-2 rounded-sm font-bold text-white cursor-pointer bg-black hover:bg-[#CBF1EE] hover:text-black '
             >Sign Up</button>
           </form>
           <div className="flex items-center justify-center gap-2 " >
