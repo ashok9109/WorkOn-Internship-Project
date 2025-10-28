@@ -17,6 +17,7 @@ const ProfilePage = () => {
         <div className='min-h-screen w-full bg-[#FFFFFF] ' >
           <form
             onSubmit={handleSubmit(onSubmit)}
+            className='h-full w-full flex flex-col items-center justify-center'
           >
             <h1 className='text-3xl pt-4  mb-4 ml-7 ' >Basic Informations</h1>
             <div className=' h-70 w-full flex gap-10 p-5 '  >
@@ -177,6 +178,15 @@ const ProfilePage = () => {
             </div>
 
             {/* Resume */}
+              <div className='h-30 w-full mt-5 ml-22 flex flex-col ml-42  ' >
+                <label htmlFor="resume" className='mb-4'  >Resume</label>
+                <input
+                  {...register("resume")}
+                  className='w-50 text-center px-2 py-2 rounded-lg border-1 border-[#F9F9F9] bg-gray-100'
+                  type="file" id='photo' placeholder='Resume' />
+                <h1 className='mt-3' >Upload File: PDF</h1>
+              </div>
+              <button className=' px-4 py-2 bg-sky-700 rounded-sm mt-10 mb-10' >Save</button>
           </form>
         </div>
       </div>

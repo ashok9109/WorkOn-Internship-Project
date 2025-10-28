@@ -8,6 +8,8 @@ import MessagePage from '../pages/MessagePage'
 import DashboardPage from '../pages/DashboardPage'
 import ProfilePage from '../pages/ProfilePage'
 import SettingsPage from '../pages/SettingsPage'
+import JobPage from '../pages/JobPage'
+import ServicesPage from '../pages/ServicesPage'
 
 const AppRouter = () => {
 
@@ -35,6 +37,14 @@ const AppRouter = () => {
             {
               path: "profile",
               element: <ProfilePage />
+            },
+            {
+              path: "job",
+              element: <JobPage />
+            },
+            {
+              path: "services",
+              element: <ServicesPage />
             },
             {
               path: "settings",

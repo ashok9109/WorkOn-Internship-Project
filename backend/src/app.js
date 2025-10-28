@@ -1,7 +1,8 @@
 const express = require("express");
 const userRouter = require("./routes/user.routes");
 const cookieParser = require("cookie-parser");
-const cors = require("cors")
+const cors = require("cors");
+const profileRouter = require("./routes/profile.routes");
 
 
 const app = express();
@@ -18,5 +19,8 @@ app.use(cookieParser())
 
 // user api
 app.use("/api/user", userRouter);
+
+// user profile
+app.use("/api/user", profileRouter);
 
 module.exports = app;

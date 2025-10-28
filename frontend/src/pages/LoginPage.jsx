@@ -4,16 +4,17 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { userLoginApi } from "../features/Actions/userActions";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 
 const LoginPage = ({ setToggle }) => {
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   const [role, setrole] = useState("job seeker");
 
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     const userData = {
@@ -22,8 +23,10 @@ const LoginPage = ({ setToggle }) => {
     const respones = await dispatch(userLoginApi(userData));
     if (respones) {
       console.log("user is login");
-      navigate("/home")
+      navigate("/home");
     }
+    toast.success("Login successfully");
+    reset();
   }
 
   return (

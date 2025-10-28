@@ -3,26 +3,32 @@ import bgimage from "../images/bg-login.jpg"
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 
 
 const SignupPage = ({ setToggle }) => {
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-    const [role, setrole] = useState("Job Seeker");
-  
+  const [role, setrole] = useState("Job Seeker");
+
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-     const userData = {
+    const userData = {
       ...data, role
     }
-   const res = await dispatch(userSignupApi(userData))
-   if(res){
-    console.log("user is Registered")
-   }
+    const res = await dispatch(userSignupApi(userData));
+    if (res) {
+      navigate("/")
+      console.log("user is Registered");
+    }
+    toast.success("Registered Successfully");
+    reset();
   }
 
   return (
@@ -36,19 +42,19 @@ const SignupPage = ({ setToggle }) => {
             onSubmit={handleSubmit(onSubmit)}
             className='h-[88%] w-full flex flex-col items-center justify-center  ' >
             <h1 className="font-bold text-3xl" >Register</h1>
-             <div className="flex gap-10 mt-4 " >
+            <div className="flex gap-10 mt-4 " >
               <button
-              type="button"
-              onClick={()=>setrole("Job Seeker")}
-              className={`px-5 py-1 rounded-sm border-1
-              ${role === "Job Seeker" ? "bg-[#175898]" : "bg-[#CBF1EE]" }
+                type="button"
+                onClick={() => setrole("Job Seeker")}
+                className={`px-5 py-1 rounded-sm border-1
+              ${role === "Job Seeker" ? "bg-[#175898]" : "bg-[#CBF1EE]"}
               `}
               >Job Seeker</button>
-              <button 
-              type="button"
-              onClick={()=>setrole("Employer")}
-              className={`px-5 py-1  rounded-sm border-1
-              ${role === "Employer" ? "bg-[#175898]" : "bg-[#CBF1EE]" }
+              <button
+                type="button"
+                onClick={() => setrole("Employer")}
+                className={`px-5 py-1  rounded-sm border-1
+              ${role === "Employer" ? "bg-[#175898]" : "bg-[#CBF1EE]"}
               `}
               >Employer</button>
             </div>
