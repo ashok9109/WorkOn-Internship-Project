@@ -8,7 +8,7 @@ const userMiddleware = async(req, res, next)=>{
 
     try {
         if(!token){
-            return res.status(401).json({
+            return res.status(404).json({
                 message:"Token is not Found"
             })
         }

@@ -3,18 +3,18 @@ const imageKit = require("imagekit");
 const storageInstance = new imageKit({
 
     publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
-    privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
+    privateKey: process.env.IMAGEKIT_PRIVATE_KRY,
     urlEndpoint: process.env.IMAGEKIT_URL,
 
 });
 
-const sendFile = async(file, fileName)=>{
+const imageKitSendFiles = async(file, fileName)=>{
 
     try {
         const res = await storageInstance.upload({
             file,
             fileName,
-            folder:"Resume"
+            folder:"profile"
         })
 
         return res
@@ -23,4 +23,4 @@ const sendFile = async(file, fileName)=>{
     }
 }
 
-module.exports = sendFile;
+module.exports = imageKitSendFiles;

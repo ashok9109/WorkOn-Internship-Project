@@ -1,13 +1,30 @@
-import React from 'react'
 import { useForm } from 'react-hook-form';
+import { userProfile } from '../apis/profileApi';
+import { toast } from 'react-toastify';
 
 const ProfilePage = () => {
 
   const { register, handleSubmit, reset, formState: { error } } = useForm();
 
+  const onSubmit = (data) => {
+    const formData = new FormData();
+    formData.append("photo", data.photo[0]);
+    formData.append("coverImage", data.coverImage[0]);
+    formData.append("firstName", data.firstName);
+    formData.append("lastName", data.lastName);
+    formData.append("email", data.email);
+    formData.append("number", data.number);
+    formData.append("description", data.description);
+    formData.append("dob", data.dob);
+    formData.append("age", data.age);
+    formData.append("gender", data.gender);
+    formData.append("languages", data.languages);
+    formData.append("qualification", data.qualification);
+    formData.append("experience", data.experience);
+    formData.append("resume", data.resume[0])
 
-  const onSubmit = (Data) => {
-    console.log("profile data", Data)
+    userProfile(formData);
+    toast.success("profile details are saved");
   }
 
   return (
@@ -178,15 +195,15 @@ const ProfilePage = () => {
             </div>
 
             {/* Resume */}
-              <div className='h-30 w-full mt-5 ml-22 flex flex-col ml-42  ' >
-                <label htmlFor="resume" className='mb-4'  >Resume</label>
-                <input
-                  {...register("resume")}
-                  className='w-50 text-center px-2 py-2 rounded-lg border-1 border-[#F9F9F9] bg-gray-100'
-                  type="file" id='photo' placeholder='Resume' />
-                <h1 className='mt-3' >Upload File: PDF</h1>
-              </div>
-              <button className=' px-4 py-2 bg-sky-700 rounded-sm mt-10 mb-10' >Save</button>
+            <div className='h-30 w-full mt-5 ml-22 flex flex-col ml-42  ' >
+              <label htmlFor="resume" className='mb-4'  >Resume</label>
+              <input
+                {...register("resume")}
+                className='w-50 text-center px-2 py-2 rounded-lg border-1 border-[#F9F9F9] bg-gray-100'
+                type="file" id='photo' placeholder='Resume' />
+              <h1 className='mt-3' >Upload File: PDF</h1>
+            </div>
+            <button className=' px-4 py-2 bg-sky-700 rounded-sm mt-10 mb-10' >Save</button>
           </form>
         </div>
       </div>
