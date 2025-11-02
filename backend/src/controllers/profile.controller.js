@@ -4,6 +4,9 @@ const imageKitSendFiles = require("../services/storage.services");
 const profileController = async (req, res) => {
 
     try {
+
+        const userID = req.user._id
+        
         const { firstName, lastName, email, number, description, dob, age, gender, languages, qualification, experience } = req.body;
 
         let photoUrl = "";
@@ -38,6 +41,7 @@ const profileController = async (req, res) => {
         }
 
         const profile = await profileModel.create({
+            user: userID,
             photoUrl,
             coverImageUrl,
             firstName,

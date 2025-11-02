@@ -5,10 +5,12 @@ import { addUser, removeUser } from "../Reducers/userSlice";
 
 export const userSignupApi = (Data) => async (dispatch) => {
     try {
-        const respones = await axiosInstance.post("/api/user/signup", Data);
-        if (respones) {
+        const res = await axiosInstance.post("/api/user/signup", Data);
+        console.log("this is response of the backend ", res)
+        if (res) {
             console.log("User is Register")
-            return respones.data.user
+            return res.data.newUser
+        
         }
     } catch (error) {
         console.log("error in signup api", error)
@@ -22,6 +24,7 @@ export const userLoginApi = (Data) => async (dispatch) => {
         const respones = await axiosInstance.post("/api/user/login", Data)
         if (respones) {
             dispatch(addUser(respones.data.user));
+            return respones.data.user
         }
     } catch (error) {
         console.log("error in login api", error)

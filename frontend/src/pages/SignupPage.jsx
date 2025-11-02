@@ -7,13 +7,11 @@ import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 
 
-
 const SignupPage = ({ setToggle }) => {
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   const [role, setrole] = useState("Job Seeker");
-
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,11 +21,12 @@ const SignupPage = ({ setToggle }) => {
       ...data, role
     }
     const res = await dispatch(userSignupApi(userData));
+    console.log("this is the respones", res)
     if (res) {
       navigate("/")
       console.log("user is Registered");
+      toast.success("Registered Successfully");
     }
-    toast.success("Registered Successfully");
     reset();
   }
 

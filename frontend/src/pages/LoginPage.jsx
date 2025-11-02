@@ -24,8 +24,8 @@ const LoginPage = ({ setToggle }) => {
     if (respones) {
       console.log("user is login");
       navigate("/home");
+      toast.success("Login successfully");
     }
-    toast.success("Login successfully");
     reset();
   }
 

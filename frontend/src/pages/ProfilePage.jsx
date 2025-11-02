@@ -1,10 +1,20 @@
 import { useForm } from 'react-hook-form';
 import { userProfile } from '../apis/profileApi';
 import { toast } from 'react-toastify';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { axiosInstance } from '../config/axiosinstance';
 
 const ProfilePage = () => {
 
-  const { register, handleSubmit, reset, formState: { error } } = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
+  const [profile, setProfile] = useState(null)
+  const [previewPhoto, setPreviewPhoto] = useState(null);
+  const [previewCoverImage, setPreviewCoverImage] = useState(null);
+  const [previewResume, setPreviewResume] = useState(null);
+
+  const { id } = useParams();
 
   const onSubmit = (data) => {
     const formData = new FormData();
@@ -25,7 +35,34 @@ const ProfilePage = () => {
 
     userProfile(formData);
     toast.success("profile details are saved");
-  }
+  };
+
+  useEffect(() => {
+    async function fetchProfile() {
+
+      const respones = await axiosInstance.get("/api/user/profile/me");
+      const profile = respones.data.profile;
+      setProfile(profile)
+      setPreviewPhoto(profile.photoUrl);
+      setPreviewCoverImage(profile.coverImageUrl);
+      setPreviewResume(profile.resumeUrl)
+
+      reset({
+        firstName: profile.firstName || "",
+        lastName: profile.lastName || "",
+        email: profile.email || "",
+        number: profile.number || "",
+        description: profile.description || "",
+        dob: profile.dob ? profile.dob.split("T")[0] : "",
+        age: profile.age || "",
+        gender: profile.gender || "",
+        languages: profile.languages || "",
+        qualification: profile.qualification || "",
+        experience: profile.experience || "",
+      });
+    }
+    fetchProfile();
+  }, [id, reset]);
 
   return (
     <>
@@ -37,46 +74,93 @@ const ProfilePage = () => {
             className='h-full w-full flex flex-col items-center justify-center'
           >
             <h1 className='text-3xl pt-4  mb-4 ml-7 ' >Basic Informations</h1>
-            <div className=' h-70 w-full flex gap-10 p-5 '  >
+            <div className=' h-60 w-full flex items-center justify-center gap-10 p-5 '  >
+
+              {/* Uploaded photo */}
+              <div className='h-40 w-50  flex flex-col ml-10' >
+                <label htmlFor="photo" className='mb-3' >Your Uploaded Photo</label>
+                <div className='h-full w-full flex items-center justify-center text-center rounded-lg border-1 border-[#F9F9F9] bg-gray-100 relative ' >
+                  {previewPhoto ? (
+                    <div className='h-full w-full' >
+                      <img
+                        className='h-full w-full bg-cover bg-center rounded-sm '
+                        src={previewPhoto} alt="profile" />
+                    </div>
+                  ) : (
+                    <h1 className='z-[1]' >Photo Not Uploaded</h1>
+                  )
+                  }
+                </div>
+              </div>
+
+              {/*Uploaded Cover Image */}
+              <div className='h-40 w-160  flex flex-col' >
+                <label htmlFor="coverImage" className='mb-3'  >Your uplaoded Cover Image</label>
+                <div className='h-full w-130 flex items-center justify-center text-center rounded-lg border-1 border-[#F9F9F9] bg-gray-100 relative' >
+                  {previewCoverImage ? (
+                    <div className='h-full w-full' >
+                    <img
+                      className='h-full w-full bg-cover bg-center rounded-sm '
+                      src={previewCoverImage} alt="profile" />
+                  </div>
+                  ) : (
+                    <h1 className='z-[1]' >Cover Image is not Upoaded</h1>
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className=' h-30 w-full flex items-center justify-center gap-20 mt-4' >
 
               {/* Profile photo */}
-              <div className='h-30 w-40  flex flex-col ml-10' >
-                <label htmlFor="photo" >Your Photo</label>
+              <div className='h-15 w-100 flex flex-col ' >
+                <label htmlFor="photo" >Upload Photo</label>
                 <input
-                  {...register("photo")}
-                  className=' text-center px-6 py-17 rounded-lg border-1 border-[#F9F9F9] bg-gray-100'
+                  {...register("photo", { required: "Photo is required" })}
+                  className='px-3 py-3  text-center  rounded-lg border-1 border-[#F9F9F9] bg-gray-100'
                   type="file" id='photo' placeholder='image' />
                 <h1>Maximum file size: 1400kb.</h1>
+                {errors.photo && (
+                  <span className='text-red-500' >{errors.photo.message}</span>
+                )}
               </div>
 
               {/* Cover Image */}
-              <div className='h-30 w-full  flex flex-col' >
-                <label htmlFor="coverImage" >Cover Image</label>
+              <div className='h-15 w-100 flex flex-col ' >
+                <label htmlFor="coverImage" >Upoad Cover Image</label>
                 <input
-                  {...register("coverImage")}
-                  className='w-180 text-center px-6 py-17 rounded-lg border-1 border-[#F9F9F9] bg-gray-100'
+                  {...register("coverImage", { required: "cover Image is Required" })}
+                  className=' px-3 py-3 text-center  rounded-lg border-1 border-[#F9F9F9] bg-gray-100'
                   type="file" id='photo' placeholder='image' />
                 <h1>The cover image size should be max 1920 x 400px</h1>
+                {errors.coverImage && (
+                  <span className='text-red-500' >{errors.coverImage.message}</span>
+                )}
               </div>
             </div>
-            <div className='h-30 w-full flex items-center justify-center gap-20' >
+            <div className='h-30 w-full flex items-center justify-center gap-20 mt-4' >
 
               {/* First Name */}
               <div className='h-20 w-[38%] flex flex-col ' >
                 <label htmlFor="firstName" className="block mb-1 font-medium" >First Name</label>
                 <input
-                  {...register("firstName")}
+                  {...register("firstName", { required: "First Name is Required" })}
                   className='px-5 py-3 rounded-sm outline-0 border-1 border-gray-300 bg-[#FFFFFF]'
                   type="text" id='firstName' placeholder='first Name' />
+                {errors.firstName && (
+                  <span>{errors.firstName.message}</span>
+                )}
               </div>
 
               {/* Last Name */}
               <div className='h-20 w-[38%] flex flex-col ' >
                 <label htmlFor="lastName" className="block mb-1 font-medium" >Last Name</label>
                 <input
-                  {...register("lastName")}
+                  {...register("lastName", { required: "Last Name is Required" })}
                   className='px-5 py-3 rounded-sm outline-0 border-1 border-gray-300 bg-[#FFFFFF]'
                   type="text" id='lastName' placeholder='Last Name' />
+                {errors.lastName && (
+                  <span className='text-red-500' >{errors.lastName.message}</span>
+                )}
               </div>
             </div>
             <div className='h-30 w-full flex items-center justify-center gap-20' >
@@ -85,29 +169,38 @@ const ProfilePage = () => {
               <div className='h-20 w-[38%] flex flex-col ' >
                 <label htmlFor="email" className="block mb-1 font-medium" >Email Address</label>
                 <input
-                  {...register("email")}
+                  {...register("email", { required: "Email is required" })}
                   className='px-5 py-3 rounded-sm outline-0 border-1 border-gray-300 bg-[#FFFFFF]'
                   type="text" id='email' placeholder='name@gmail.com' />
+                {errors.email && (
+                  <span className='text-red-500 ' >{errors.email.message}</span>
+                )}
               </div>
 
               {/* Phone Number */}
               <div className='h-20 w-[38%] flex flex-col ' >
                 <label htmlFor="number" className="block mb-1 font-medium" >Phone number</label>
                 <input
-                  {...register("number")}
+                  {...register("number", { required: " Number is Required" })}
                   className='px-5 py-3 rounded-sm outline-0 border-1 border-gray-300 bg-[#FFFFFF]'
                   type="tel" placeholder='Enter phone number' />
+                {errors.number && (
+                  <span className='text-red-500 ' >{errors.number.message}</span>
+                )}
               </div>
             </div>
 
             {/* Description */}
-            <div className='h-40 w-full flex flex-col items-center jsutify-center ' >
+            <div className='h-50 w-full flex flex-col items-center jsutify-center ' >
               <label htmlFor="description" className="block mb-1 font-medium" >Description</label>
               <textarea
-                {...register("description")}
-                rows={5}
-                className='h-30 w-[75%] px-4 pt-3 rounded-sm outline-0 border-1 border-gray-300 bg-[#FFFFFF]'
+                {...register("description", { required: "Descriptions is Required" })}
+                rows={7}
+                className='h-40 w-[75%] px-4 pt-3 rounded-sm outline-0 border-1 border-gray-300 bg-[#FFFFFF]'
                 id="description" placeholder='Write a short bio or description' ></textarea>
+              {errors.description && (
+                <span className='text-red-500'>{errors.description.message}</span>
+              )}
             </div>
             <div className='h-30 w-full flex items-center justify-center gap-20' >
 
@@ -115,16 +208,19 @@ const ProfilePage = () => {
               <div className='h-20 w-[38%] flex flex-col ' >
                 <label htmlFor="dob" className="block mb-1 font-medium" >Date of Birth</label>
                 <input
-                  {...register("dob")}
+                  {...register("dob", { required: "Date of Bith is Required" })}
                   className='px-5 py-3 rounded-sm outline-0 border-1 border-gray-300 bg-[#FFFFFF]'
                   type="date" id='dob' placeholder='first Name' />
+                {errors.dob && (
+                  <span className='text-red-500' >{errors.dob.message}</span>
+                )}
               </div>
 
               {/* Age */}
               <div className='h-20 w-[38%] flex flex-col ' >
                 <label htmlFor="age" className="block mb-1 font-medium" >Age</label>
                 <select
-                  {...register("age")}
+                  {...register("age", { required: "Age is Required" })}
                   className='px-5 py-3 rounded-sm outline-0 border-1 border-gray-300 bg-[#FFFFFF]'
                 >
                   <option value="18-24">18 - 24</option>
@@ -132,6 +228,9 @@ const ProfilePage = () => {
                   <option value="31-40">31 - 40</option>
                   <option value="40+">40+</option>
                 </select>
+                {errors.age && (
+                  <span className='text-red-500' > {errors.age.message}</span>
+                )}
               </div>
             </div>
             <div className='h-30 w-full flex items-center justify-center gap-20' >
@@ -140,26 +239,32 @@ const ProfilePage = () => {
               <div className='h-20 w-[38%] flex flex-col ' >
                 <label htmlFor="gender" className="block mb-1 font-medium" >Gender</label>
                 <select
-                  {...register("gender")}
+                  {...register("gender", { required: "Gender is Required" })}
                   className='px-5 py-3 rounded-sm outline-0 border-1 border-gray-300 bg-[#FFFFFF]'
                 >
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="other">Other</option>
                 </select>
+                {errors.gender && (
+                  <span className='text-red-500' >{errors.gender.message}</span>
+                )}
               </div>
 
               {/* Languages */}
               <div className='h-20 w-[38%] flex flex-col ' >
                 <label className="block mb-1 font-medium">Languages</label>
                 <select
-                  {...register("languages")}
+                  {...register("languages", { required: "Languages is Required" })}
                   className='px-5 py-3 rounded-sm outline-0 border-1 border-gray-300 bg-[#FFFFFF]'
                 >
                   <option value="English">English</option>
                   <option value="Hindi">Hindi</option>
                   <option value="Other">Other</option>
                 </select>
+                {errors.languages && (
+                  <span className='text-red-500' >{errors.languages.message}</span>
+                )}
               </div>
             </div>
             <div className='h-30 w-full flex items-center justify-center gap-20' >
@@ -168,7 +273,7 @@ const ProfilePage = () => {
               <div className='h-20 w-[38%] flex flex-col ' >
                 <label className="block mb-1 font-medium">Qualification</label>
                 <select
-                  {...register("qualification")}
+                  {...register("qualification", { required: "Qualifications is Required" })}
                   className='px-5 py-3 rounded-sm outline-0 border-1 border-gray-300 bg-[#FFFFFF]'
                 >
                   <option value="Bachelor Degree">Bachelor Degree</option>
@@ -176,13 +281,16 @@ const ProfilePage = () => {
                   <option value="PhD">PhD</option>
                   <option value="Diploma">Diploma</option>
                 </select>
+                {errors.qualification && (
+                  <span className='text-red-500' >{errors.qualification.message}</span>
+                )}
               </div>
 
               {/* Years of Experience */}
               <div className='h-20 w-[38%] flex flex-col ' >
                 <label className="block mb-1 font-medium">Years of Experience</label>
                 <select
-                  {...register("experience")}
+                  {...register("experience", { required: "Exprricence is Required" })}
                   className='px-5 py-3 rounded-sm outline-0 border-1 border-gray-300 bg-[#FFFFFF]'
                 >
                   <option value="">Select an option</option>
@@ -191,18 +299,48 @@ const ProfilePage = () => {
                   <option value="6-10">6-10</option>
                   <option value="10+">10+</option>
                 </select>
+                {errors.experience && (
+                  <span className='text-red-500' >{errors.experience.message}</span>
+                )}
+              </div>
+            </div>
+            <div className='h-40 w-full flex items-center justify-center gap-20' >
+
+              {/* Resume */}
+              <div className='h-30 w-full mt-5 ml-22 flex flex-col  ' >
+                <label htmlFor="resume" className='mb-4'  >Upoad Resume</label>
+                <input
+                  {...register("resume", { required: "Resume Is Required" })}
+                  className='w-50 text-center px-2 py-2 rounded-lg border-1 border-[#F9F9F9] bg-gray-100'
+                  type="file" id='photo' placeholder='Resume' />
+                <h1 className='mt-3' >Upload File: PDF</h1>
+                {errors.resume && (
+                  <span className='text-red-500' >{errors.resume.message}</span>
+                )}
+              </div>
+
+              {/*Uploaded Resume */}
+              <div className='h-30 w-full mt-5 ml-22 flex flex-col ' >
+                <label htmlFor="resume" className='mb-4'  >Uploaded  Resume</label>
+                <div className='h-10 w-50 text-center  rounded-lg border-1 border-[#F9F9F9] bg-gray-100' >
+                  {previewResume ? (
+                    <div className='h-10  flex flex-col items-center justify-center ' >
+                      <a href={previewResume}
+                        className='w-50 text-center px-4 py-4 rounded-lg border-1 border-[#F9F9F9] bg-gray-100'
+                        download
+                        target="_blank" rel="noopener noreferrer">
+                        {profile?.resumeUrl.split("/").pop()}
+                      </a>
+                      <h1>View the Resume</h1>
+                    </div>
+                  ) : (
+                    <h1 className='pt-1' >Resume Not Uploaded</h1>
+                  )}
+                </div>
+
               </div>
             </div>
 
-            {/* Resume */}
-            <div className='h-30 w-full mt-5 ml-22 flex flex-col ml-42  ' >
-              <label htmlFor="resume" className='mb-4'  >Resume</label>
-              <input
-                {...register("resume")}
-                className='w-50 text-center px-2 py-2 rounded-lg border-1 border-[#F9F9F9] bg-gray-100'
-                type="file" id='photo' placeholder='Resume' />
-              <h1 className='mt-3' >Upload File: PDF</h1>
-            </div>
             <button className=' px-4 py-2 bg-sky-700 rounded-sm mt-10 mb-10' >Save</button>
           </form>
         </div>
