@@ -1,9 +1,7 @@
 import { useForm } from 'react-hook-form';
-import { userProfile } from '../apis/profileApi';
+import { createProfileApi, getProfileApi, updateProfileApi} from '../apis/profileApi';
 import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
-import { axiosInstance } from '../config/axiosinstance';
 
 const ProfilePage = () => {
 
@@ -14,9 +12,7 @@ const ProfilePage = () => {
   const [previewCoverImage, setPreviewCoverImage] = useState(null);
   const [previewResume, setPreviewResume] = useState(null);
 
-  const { id } = useParams();
-
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const formData = new FormData();
     formData.append("photo", data.photo[0]);
     formData.append("coverImage", data.coverImage[0]);
@@ -33,15 +29,22 @@ const ProfilePage = () => {
     formData.append("experience", data.experience);
     formData.append("resume", data.resume[0])
 
-    userProfile(formData);
-    toast.success("profile details are saved");
+    let respones;
+    if(profile){
+      respones = await updateProfileApi(formData);
+      toast.success("Profile updated")
+    }else{
+      respones = await createProfileApi(formData);
+      toast.success("Profile created successfully");
+    }
   };
 
   useEffect(() => {
     async function fetchProfile() {
 
-      const respones = await axiosInstance.get("/api/user/profile/me");
-      const profile = respones.data.profile;
+      const data = await getProfileApi();
+      const profile = data.profile
+
       setProfile(profile)
       setPreviewPhoto(profile.photoUrl);
       setPreviewCoverImage(profile.coverImageUrl);
@@ -62,7 +65,7 @@ const ProfilePage = () => {
       });
     }
     fetchProfile();
-  }, [id, reset]);
+  }, []);
 
   return (
     <>
@@ -115,26 +118,20 @@ const ProfilePage = () => {
               <div className='h-15 w-100 flex flex-col ' >
                 <label htmlFor="photo" >Upload Photo</label>
                 <input
-                  {...register("photo", { required: "Photo is required" })}
+                  {...register("photo")}
                   className='px-3 py-3  text-center  rounded-lg border-1 border-[#F9F9F9] bg-gray-100'
                   type="file" id='photo' placeholder='image' />
                 <h1>Maximum file size: 1400kb.</h1>
-                {errors.photo && (
-                  <span className='text-red-500' >{errors.photo.message}</span>
-                )}
               </div>
 
               {/* Cover Image */}
               <div className='h-15 w-100 flex flex-col ' >
                 <label htmlFor="coverImage" >Upoad Cover Image</label>
                 <input
-                  {...register("coverImage", { required: "cover Image is Required" })}
+                  {...register("coverImage")}
                   className=' px-3 py-3 text-center  rounded-lg border-1 border-[#F9F9F9] bg-gray-100'
                   type="file" id='photo' placeholder='image' />
                 <h1>The cover image size should be max 1920 x 400px</h1>
-                {errors.coverImage && (
-                  <span className='text-red-500' >{errors.coverImage.message}</span>
-                )}
               </div>
             </div>
             <div className='h-30 w-full flex items-center justify-center gap-20 mt-4' >
@@ -310,13 +307,10 @@ const ProfilePage = () => {
               <div className='h-30 w-full mt-5 ml-22 flex flex-col  ' >
                 <label htmlFor="resume" className='mb-4'  >Upoad Resume</label>
                 <input
-                  {...register("resume", { required: "Resume Is Required" })}
+                  {...register("resume")}
                   className='w-50 text-center px-2 py-2 rounded-lg border-1 border-[#F9F9F9] bg-gray-100'
                   type="file" id='photo' placeholder='Resume' />
                 <h1 className='mt-3' >Upload File: PDF</h1>
-                {errors.resume && (
-                  <span className='text-red-500' >{errors.resume.message}</span>
-                )}
               </div>
 
               {/*Uploaded Resume */}
@@ -326,7 +320,7 @@ const ProfilePage = () => {
                   {previewResume ? (
                     <div className='h-10  flex flex-col items-center justify-center ' >
                       <a href={previewResume}
-                        className='w-50 text-center px-4 py-4 rounded-lg border-1 border-[#F9F9F9] bg-gray-100'
+                        className='w-60 text-center px-4 py-4 rounded-lg border-1 border-[#F9F9F9] bg-gray-100'
                         download
                         target="_blank" rel="noopener noreferrer">
                         {profile?.resumeUrl.split("/").pop()}
@@ -341,7 +335,7 @@ const ProfilePage = () => {
               </div>
             </div>
 
-            <button className=' px-4 py-2 bg-sky-700 rounded-sm mt-10 mb-10' >Save</button>
+            <button className=' px-4 py-2 bg-sky-700 rounded-sm mt-10 mb-10' >Save & Update</button>
           </form>
         </div>
       </div>

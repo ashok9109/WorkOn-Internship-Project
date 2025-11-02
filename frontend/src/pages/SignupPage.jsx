@@ -21,7 +21,6 @@ const SignupPage = ({ setToggle }) => {
       ...data, role
     }
     const res = await dispatch(userSignupApi(userData));
-    console.log("this is the respones", res)
     if (res) {
       navigate("/")
       console.log("user is Registered");

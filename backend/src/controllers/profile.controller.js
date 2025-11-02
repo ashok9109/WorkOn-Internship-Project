@@ -19,7 +19,7 @@ const profileController = async (req, res) => {
             const fileName = req.files.photo[0].originalname
             const uploadPhoto = await imageKitSendFiles(photo, fileName);
 
-            photoUrl = uploadPhoto.url
+            photoUrl = uploadPhoto.url;
         }
 
         // uploading coverImage to imageKit
