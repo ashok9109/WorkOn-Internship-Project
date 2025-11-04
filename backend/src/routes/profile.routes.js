@@ -7,7 +7,7 @@ const updateProfileController = require("../controllers/udateprofile.controller"
 
 const router = express.Router();
 
-// profile api
+// create profile api
 router.post("/profile/create", userMiddleware,
     upload.fields([
         { name: "photo", maxCount: 1 },

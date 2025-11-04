@@ -3,6 +3,7 @@ const userRouter = require("./routes/user.routes");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const profileRouter = require("./routes/profile.routes");
+const jobRouter = require("./routes/job.routes")
 
 
 const app = express();
@@ -20,7 +21,10 @@ app.use(cookieParser())
 // user api
 app.use("/api/user", userRouter);
 
-// user profile
+// profile api
 app.use("/api/user", profileRouter);
+
+//job api 
+app.use("/api/job", jobRouter)
 
 module.exports = app;

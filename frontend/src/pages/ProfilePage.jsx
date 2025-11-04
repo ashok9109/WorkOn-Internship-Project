@@ -2,6 +2,8 @@ import { useForm } from 'react-hook-form';
 import { createProfileApi, getProfileApi, updateProfileApi} from '../apis/profileApi';
 import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
+import Footer from '../components/Footer';
+import Contact from '../components/Contact';
 
 const ProfilePage = () => {
 
@@ -69,9 +71,9 @@ const ProfilePage = () => {
 
   return (
     <>
-      <div className='min-h-screen w-full bg-gray-200 rounded-lg pt-10 pl-30 pr-30 '  >
+      <section className='min-h-screen w-full bg-gray-200 rounded-lg pt-10 pl-30 pr-30 '  >
         <h1 className='text-3xl mb-10 underline text-center' >Profile Settings</h1>
-        <div className='min-h-screen w-full bg-[#FFFFFF] ' >
+        <div className='min-h-screen w-full bg-[#FFFFFF] mb-10 ' >
           <form
             onSubmit={handleSubmit(onSubmit)}
             className='h-full w-full flex flex-col items-center justify-center'
@@ -338,7 +340,9 @@ const ProfilePage = () => {
             <button className=' px-4 py-2 bg-sky-700 rounded-sm mt-10 mb-10' >Save & Update</button>
           </form>
         </div>
-      </div>
+        <Contact/>
+        <Footer/>
+      </section>
     </>
   )
 }

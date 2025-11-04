@@ -10,6 +10,7 @@ import ProfilePage from '../pages/ProfilePage'
 import SettingsPage from '../pages/SettingsPage'
 import JobPage from '../pages/JobPage'
 import ServicesPage from '../pages/ServicesPage'
+import ApplicantsPage from '../pages/ApplicantsPage'
 
 const AppRouter = () => {
 
@@ -41,6 +42,10 @@ const AppRouter = () => {
             {
               path: "job",
               element: <JobPage />
+            },
+            {
+              path:"applicants",
+              element:<ApplicantsPage/>
             },
             {
               path: "services",
