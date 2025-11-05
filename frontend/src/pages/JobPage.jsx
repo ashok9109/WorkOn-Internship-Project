@@ -7,14 +7,14 @@ import workon2 from '../images/work-on2.jpg';
 const JobPage = () => {
   return (
     <>
-      <section className='h-screen w-[84%] bg-white ' >
-        <div className='h-full w-full flex items-center justify-evenly ' >
+      <section className=' w-[84%] bg-white ' >
+        <div className='h-screen w-full flex items-center justify-evenly  ' >
 
           {/* Left div */}
-          <div className='h-full w-[45%] pt-20 ' >
+          <div className='h-[100%] w-[45%] pt-20 ' >
             <h1 className='text-4xl font-bold mt-30 ml-15 mb-4 ' >Find the perfect <br /> job for you </h1>
             <h3 className='opacity-[0.7] ml-15' >Fill your job in hours, not weeks. Search for free.</h3>
-            <form className='h-30 w-[90%] flex items-center justify-center  mt-5 ml-10' >
+            <form className='h-[30%] w-[90%] flex items-center justify-center ml-10' >
 
               {/* search bar */}
               <div className='h-15 w-[90%] flex items-center rounded-3xl bg-gray-100' >
@@ -96,8 +96,8 @@ const JobPage = () => {
             </svg>
           </div>
         </div>
-      <Contact/>
-      <Footer/>
+        <Contact />
+        <Footer />
       </section>
     </>
   )

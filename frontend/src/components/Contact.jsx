@@ -48,7 +48,7 @@ const Contact = () => {
     }
 
     return (
-        <section className="min-h-screen w-full bg-white flex flex-col  items-center justify-center px-6 py-12 gap-10">
+        <section className="min-h-screen w-full bg-gray-200 flex flex-col  items-center justify-center px-6 py-12 gap-10">
             <div className="min-h-[90%] w-[85%] flex items-center justify-center md:flex-row bg-[#0a3d4c] rounded-lg px-6 py-12 gap-10 " >
 
                 {/* Left Side */}

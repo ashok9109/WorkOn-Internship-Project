@@ -24,6 +24,12 @@ const jobSchema = new mongoose.Schema(
       enum: ["Full-Time", "Part-Time", "Internship", "Remote"],
       required: true,
     },
+    qualification: {
+      type: String,
+      enum: ["Bachelor Degree","Master's Degree", "Diploma"],
+      required: true,
+      default:"Bachelor Degree"
+    },
     experience: {
       type: String, 
       default: "Fresher"
@@ -38,7 +44,6 @@ const jobSchema = new mongoose.Schema(
     },
     dueDate: {
       type: Date,
-      required: true,
     },
     postedBy: {
       type: mongoose.Schema.Types.ObjectId,
@@ -49,6 +54,6 @@ const jobSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const jobModel = mongoose.model("Jobs", jobSchema);
+const jobModel = mongoose.model("Job-posts", jobSchema);
 
 module.exports = jobModel;

@@ -11,6 +11,7 @@ const navLink = [
     { label: "Dashboard", icon: LayoutDashboard, to: "/home/dashboard" },
     { label: "Profile", icon: User, to: "/home/profile" },
     { label: "Job", icon: BriefcaseBusiness, to: "/home/job" },
+    { label: "Create Job", icon: BriefcaseBusiness, to: "/home/create-job" },
     { label: "applicants", icon: FileText, to: "/home/applicants" },
     { label: "Messages", icon: Send, to: "/home/messages" },
     { label: "Services", icon: ArrowUpRight, to: "/home/Services" },
@@ -38,13 +39,13 @@ const NavLink = () => {
     }
 
     return (
-        <div className='h-screen w-60 flex  flex-col  gap-10 shadow-2xl border-1 border-gray-300 mt-10 pt-5 pl-3' >
+        <div className='h-full w-60 flex  flex-col  gap-10 shadow-2xl border-1 border-gray-300 mt-10 pt-5 pl-3' >
             {navLink.map(({ label, icon: Icon, to }, idx) => (
                 <RouterNavLink
                     key={label}
                     to={to}
-                    className={({ isActive }) => `flex gap-5 pl-2 text-xl font-semibold ${to === location.pathname
-                        ? "text-sky-700" : ""
+                    className={({ isActive }) => `flex gap-5 pl-2 text-xl opacity-[0.9] font-bold ${to === location.pathname
+                        ? "text-[#0A3D4C]" : ""
                         }`}
                 >
                     <Icon />
@@ -55,7 +56,7 @@ const NavLink = () => {
             <div className='flex gap-5 pl-2' >
                 <h1 className='text-2xl text-red-600' ><i className="ri-logout-circle-line"></i></h1>
                 <button
-                    className='font-semibold text-xl text-red-600 underline '
+                    className='font-bold text-xl opacity-[0.9] text-red-600 underline '
                     onClick={logoutUser}
                 >LogOut</button>
             </div>
