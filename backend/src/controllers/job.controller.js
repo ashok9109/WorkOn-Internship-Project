@@ -1,6 +1,7 @@
 const jobModel = require("../models/job.Model");
 
 
+// create job controller
 
 const createJobController = async (req, res) => {
 
@@ -40,6 +41,26 @@ const createJobController = async (req, res) => {
             message:"server error while creating post"
         })
     }
+};
+
+// get all job controller
+
+const getAlljobcontroller = async(req, res)=>{
+    try {
+
+        const job = await jobModel.find().sort({createdAt:-1}).populate("postedBy", "firstName lastName email");
+
+        return res.status(200).json({
+            message :"Job post fetched successfully",
+            job
+        })
+        
+    } catch (error) {
+        console.log("error in fetch the job post", error);
+        res.status(500).json({
+            message:"server error in fetch job post"
+        })
+    }
 }
 
-module.exports = { createJobController };
+module.exports = { createJobController, getAlljobcontroller };

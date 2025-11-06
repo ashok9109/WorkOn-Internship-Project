@@ -1,9 +1,7 @@
 const express = require("express");
-const profileController = require("../controllers/profile.controller");
 const upload = require("../db/multer");
-const getProfileController = require("../controllers/getprofile.controller");
+const { createProfileController, updateProfileController, getProfileController } = require("../controllers/profile.controller");
 const { userMiddleware } = require("../middlewares/user.middleware");
-const updateProfileController = require("../controllers/udateprofile.controller");
 
 const router = express.Router();
 
@@ -13,8 +11,8 @@ router.post("/profile/create", userMiddleware,
         { name: "photo", maxCount: 1 },
         { name: "coverImage", maxCount: 1 },
         { name: "resume", maxCount: 1 }
-    ])
-    , profileController);
+    ]),
+       createProfileController );
 
 
 // get profile api
@@ -27,8 +25,7 @@ router.put("/profile/update", userMiddleware,
         { name: "coverImage", maxCount: 1 },
         { name: "resume", maxCount: 1 }
     ]),
-    updateProfileController
-);
+     updateProfileController );
 
 
 

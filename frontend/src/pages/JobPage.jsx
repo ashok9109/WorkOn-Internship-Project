@@ -2,9 +2,31 @@ import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import workon from '../images/work-on1.webp';
 import workon2 from '../images/work-on2.jpg';
+import { useEffect, useState } from "react";
+import { getAllJobApi } from '../apis/jobApi';
+import { Link } from "react-router";
 
 
 const JobPage = () => {
+
+  const [jobs, setJobs] = useState([]);
+
+  useEffect(() => {
+    async function fetchJobs() {
+      try {
+        const res = await getAllJobApi();
+        setJobs(res.data.job);
+
+      } catch (err) {
+        console.log("Error while fetching jobs", err);
+      }
+    }
+
+    fetchJobs();
+  }, []);
+
+
+
   return (
     <>
       <section className=' w-[84%] bg-white ' >
@@ -96,6 +118,42 @@ const JobPage = () => {
             </svg>
           </div>
         </div>
+
+        {/* showing the jobs */}
+        <div className="min-h-screen bg-gray-100 py-10">
+          <h1 className="text-3xl font-bold text-center mb-8 text-[#15803D]">
+            Available Job Openings
+          </h1>
+
+          <div className="w-10/12 mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {jobs?.map((job) => (
+              <div key={job._id} className="bg-white shadow-md p-5 rounded-lg">
+                <h2 className="text-xl font-bold">{job.title}</h2>
+                <p className="text-gray-600">Company :- {job.company}</p>
+                <p className="mt-2 text-sm">
+                  📍 {job.location} | 💼 {job.jobType}
+                </p>
+                <p className="mt-1 text-sm text-green-600">
+                  💰 {job.salary}
+                </p>
+
+                <p className="mt-3 text-gray-700 line-clamp-2">
+                  {job.description}
+                </p>
+
+                <div className="mt-4">
+                  <Link
+                    to={`/jobs/${job._id}`}
+                    className="block text-center bg-[#0A3D4C] text-white py-2 rounded hover:bg-blue-900"
+                  >
+                    View & Apply
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <Contact />
         <Footer />
       </section>
