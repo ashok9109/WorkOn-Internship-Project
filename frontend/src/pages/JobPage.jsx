@@ -71,20 +71,20 @@ const JobPage = () => {
           {/* Right div */}
           <div className='h-full w-[45%] flex items-center justify-center relative shadow-2xl ' >
             <div className='h-[70%] w-[80] relative border-3 rounded-2xl shadow-2xl ' >
-              <div className='absolute left-5 top-10  flex items-center justify-center bg-white px-3 py-2 gap-3 rounded-lg' >
+              <div className='absolute left-5 top-10  flex items-center justify-center bg-white px-3 py-2 gap-3 rounded-lg z-[999]' >
                 <span className='text-yellow-600 ' >🔔</span>
                 <span className='text-md' >Job Alert Subcribe</span>
                 <span className='bg-yellow-500 px-2 rounded' >1</span>
               </div>
               <img
-                className='h-full w-full object-cover rounded-lg'
-                src={workon} alt="image" />
-              <div className='absolute bottom-10 right-5 flex items-center justify-center bg-white px-3 py-2 gap-3 rounded-lg' >
+                className='h-full w-full object-cover rounded-lg hover:scale-[1.1] transition z-[9] '
+                src={workon} alt="Image" />
+              <div className='absolute bottom-10 right-5 flex items-center justify-center bg-white px-3 py-2 gap-3 rounded-lg z-[999] ' >
                 <span className='text-yellow-600 ' >5k+</span>
                 <span className='text-md' >candidates get job</span>
                 <img
-                  className='h-10 w-10 rounded-4xl'
-                  src={workon2} alt="" />
+                  className='h-10 w-10 rounded-4xl  '
+                  src={workon2} alt="Image" />
               </div>
             </div>
           </div>
@@ -125,9 +125,9 @@ const JobPage = () => {
             Available Job Openings
           </h1>
 
-          <div className="w-10/12 mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="w-10/12 mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6  ">
             {jobs?.map((job) => (
-              <div key={job._id} className="bg-white shadow-md p-5 rounded-lg">
+              <div key={job._id} className="bg-white shadow-md p-5 rounded-lg hover:scale-[1.1] transition ">
                 <h2 className="text-xl font-bold">{job.title}</h2>
                 <p className="text-gray-600">Company :- {job.company}</p>
                 <p className="mt-2 text-sm">
@@ -143,8 +143,8 @@ const JobPage = () => {
 
                 <div className="mt-4">
                   <Link
-                    to={`/jobs/${job._id}`}
-                    className="block text-center bg-[#0A3D4C] text-white py-2 rounded hover:bg-blue-900"
+                    to={`/home/jobs/details/${job._id}`}
+                    className="block text-center bg-[#0A3D4C] text-white py-2 rounded hover:bg-[#00BBA7]"
                   >
                     View & Apply
                   </Link>

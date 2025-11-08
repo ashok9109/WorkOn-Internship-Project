@@ -38,29 +38,63 @@ const createJobController = async (req, res) => {
     } catch (error) {
         console.log("error in create job post ", error);
         res.status(500).json({
-            message:"server error while creating post"
+            message: "server error while creating post"
         })
     }
 };
 
 // get all job controller
 
-const getAlljobcontroller = async(req, res)=>{
+const getAlljobcontroller = async (req, res) => {
     try {
 
-        const job = await jobModel.find().sort({createdAt:-1}).populate("postedBy", "firstName lastName email");
+        const job = await jobModel
+            .find()
+            .sort({ createdAt: -1 })
+            .populate("postedBy", "firstName lastName email");
 
         return res.status(200).json({
-            message :"Job post fetched successfully",
+            message: "Job post fetched successfully",
+            job
+        })
+
+    } catch (error) {
+        console.log("error in fetch the job post", error);
+        res.status(500).json({
+            message: "server error in fetch job post"
+        })
+    }
+};
+
+const getSingleJobController = async (req, res) => {
+    try {
+
+        const jobId = req.params.id;
+
+        const job = await jobModel
+        .findById(jobId)
+        .populate("postedBy", "firstName lastName email");
+
+        if(!job){
+            return res.status(404).json({
+                message:"single job post is not found"
+            })
+        }
+
+        res.status(200).json({
+            message:"single job fetched successfully",
             job
         })
         
     } catch (error) {
-        console.log("error in fetch the job post", error);
+        console.log("error to get the single job post", error);
         res.status(500).json({
-            message:"server error in fetch job post"
+            message: "error while fetching single job"
         })
-    }
-}
 
-module.exports = { createJobController, getAlljobcontroller };
+    };
+};
+
+
+
+module.exports = { createJobController, getAlljobcontroller,  getSingleJobController};

@@ -3,7 +3,8 @@ const userRouter = require("./routes/user.routes");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const profileRouter = require("./routes/profile.routes");
-const jobRouter = require("./routes/job.routes")
+const jobRouter = require("./routes/job.routes");
+const applicantsRouter = require("./routes/applicants.routes");
 
 
 const app = express();
@@ -25,6 +26,9 @@ app.use("/api/user", userRouter);
 app.use("/api/user", profileRouter);
 
 //job api 
-app.use("/api/job", jobRouter)
+app.use("/api/job", jobRouter);
+
+// applicants api
+app.use("/api/applicants",applicantsRouter);
 
 module.exports = app;

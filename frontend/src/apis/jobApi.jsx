@@ -30,3 +30,29 @@ export const getAllJobApi = async () => {
     }
 
 };
+
+// apply for job api
+export const applyJobApi = async(postId)=>{
+    try {
+        const respones = await axiosInstance.post("/api/applicants/job/apply", postId);
+
+        if(respones){
+            console.log("applied successfully");
+            return respones
+        }
+        
+    } catch (error) {
+        console.log("error applying job", error)
+    }
+};
+
+// get a single job api
+// export const singleJobApi = async()=>{
+//     try {
+
+//         const response = await axiosInstance.get("/api/job/single/post/")
+        
+//     } catch (error) {
+//         console.log("error fetch single job api", error)
+//     }
+// }

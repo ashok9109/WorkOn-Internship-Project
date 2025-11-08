@@ -12,7 +12,7 @@ const navLink = [
     { label: "Profile", icon: User, to: "/home/profile" },
     { label: "Job", icon: BriefcaseBusiness, to: "/home/job" },
     { label: "Create Job", icon: BriefcaseBusiness, to: "/home/create-job" },
-    { label: "applicants", icon: FileText, to: "/home/applicants" },
+    { label: "Applicants", icon: FileText, to: "/home/applicants" },
     { label: "Messages", icon: Send, to: "/home/messages" },
     { label: "Services", icon: ArrowUpRight, to: "/home/Services" },
     { label: "Settings", icon: Settings, to: "/home/settings" },
@@ -49,7 +49,7 @@ const NavLink = () => {
             <div className='h-full w-60 flex  flex-col  gap-10 shadow-2xl border-1 border-gray-300 mt-10 pt-5 pl-3' >
                 {navLink.map(({ label, icon: Icon, to }, idx) => {
 
-                    if (role === "Job Seeker" & (label === "Create Job" || label === "applicants")) {
+                    if (role === "Job Seeker" & (label === "Create Job" || label === "Applicants")) {
                         return null
                     }
 

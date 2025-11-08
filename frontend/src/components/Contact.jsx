@@ -1,21 +1,3 @@
-// import React from 'react'
-
-// const Contact = () => {
-//   return (
-//   <>
-//     <section className='h-screen w-screen flex items-center justify-center' >
-//     <div className=''>
-
-//     </div>
-
-
-//     </section>
-//   </>
-//   )
-// }
-
-// export default Contact;
-
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { FaBehance, FaDribbble, FaInstagram } from "react-icons/fa";
 import { useState } from "react";
@@ -48,7 +30,7 @@ const Contact = () => {
     }
 
     return (
-        <section className="min-h-screen w-full bg-gray-200 flex flex-col  items-center justify-center px-6 py-12 gap-10">
+        <section className="min-h-screen w-full bg-gray-100 flex flex-col  items-center justify-center px-6 mb-10 py-12 gap-10">
             <div className="min-h-[90%] w-[85%] flex items-center justify-center md:flex-row bg-[#0a3d4c] rounded-lg px-6 py-12 gap-10 " >
 
                 {/* Left Side */}
@@ -129,7 +111,7 @@ const Contact = () => {
                         />
                         <button
                             type="submit"
-                            className="bg-teal-500 text-white font-semibold py-3 rounded-full mt-3 transition hover:bg-teal-600">
+                            className="bg-teal-500 text-white font-semibold py-3 rounded-full mt-3 transition hover:scale-[0.9] hover:bg-[#0A3D4C]">
                             Send message
                         </button>
                     </form>

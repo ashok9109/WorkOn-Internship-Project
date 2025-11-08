@@ -1,6 +1,6 @@
 const express = require("express");
 const { userMiddleware } = require("../middlewares/user.middleware");
-const { createJobController, getAlljobcontroller } = require("../controllers/job.controller");
+const { createJobController, getAlljobcontroller, getSingleJobController } = require("../controllers/job.controller");
 
 const router = express.Router();
 
@@ -9,6 +9,9 @@ router.post("/create/post",userMiddleware, createJobController );
 
 // get job post api
 router.get("/all/post", getAlljobcontroller);
+
+// get the single job post api
+router.get("/single/post/:id", getSingleJobController );
 
 
 module.exports = router;

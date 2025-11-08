@@ -49,8 +49,8 @@ const CreateJobPage = () => {
     };
     return (
         <>
-            <section className='min-h-screen w-[84%] flex flex-col items-center justify-center bg-gray-200 ' >
-                <div className=" h-full -w-full p-8 rounded-xl shadow max-w-2xl mx-auto my-10 bg-white">
+            <section className='min-h-screen w-[84%] flex flex-col items-center justify-center bg-gray-100 ' >
+                <div className=" h-full -w-full p-8 rounded-xl shadow-lg max-w-2xl mx-auto my-10 bg-white">
                     <h2 className="text-2xl text-center font-bold mb-8 text-[#0A3D4C]">
                         Create a New Job Posting
                     </h2>
@@ -197,7 +197,7 @@ const CreateJobPage = () => {
                                     placeholder="Type a skill (e.g. React)"
                                 />
                                 <button
-                                    className="px-4 py-2 bg-[#0A3D4C] text-white rounded"
+                                    className="px-4 py-2 bg-[#0A3D4C] text-white rounded hover:bg-[#00BBA7] hover:scale-[0.9] transition  "
                                     onClick={handleAddSkill}
                                     type="button"
                                 >
@@ -213,7 +213,7 @@ const CreateJobPage = () => {
                                         {skill}
                                         <button
                                             type="button"
-                                            className="ml-2 text-red-500 font-bold"
+                                            className="ml-2 text-red-500 font-bold "
                                             onClick={() => handleRemoveSkill(skill)}
                                         >
                                             x
@@ -242,7 +242,7 @@ const CreateJobPage = () => {
 
                         <button
                             type="submit"
-                            className="w-full py-3 bg-[#0A3D4C] text-white font-semibold rounded mt-6  transition"
+                            className="w-full py-3 bg-[#0A3D4C] text-white font-semibold rounded mt-6 hover:bg-[#00BBA7] hover:scale-[0.9]  transition"
                             disabled={loading}
                         >
                             {loading ? "Posting..." : "Post Job"}

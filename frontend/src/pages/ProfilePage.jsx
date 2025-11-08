@@ -88,7 +88,7 @@ const ProfilePage = () => {
                   {previewPhoto ? (
                     <div className='h-full w-full' >
                       <img
-                        className='h-full w-full bg-cover bg-center rounded-sm '
+                        className='h-full w-full bg-cover bg-center rounded-sm hover:scale-[1.1] transition '
                         src={previewPhoto} alt="profile" />
                     </div>
                   ) : (
@@ -105,7 +105,7 @@ const ProfilePage = () => {
                   {previewCoverImage ? (
                     <div className='h-full w-full' >
                     <img
-                      className='h-full w-full bg-cover bg-center rounded-sm '
+                      className='h-full w-full bg-cover bg-center rounded-sm hover:scale-[1.1] transition '
                       src={previewCoverImage} alt="profile" />
                   </div>
                   ) : (
@@ -337,7 +337,7 @@ const ProfilePage = () => {
               </div>
             </div>
 
-            <button className=' px-4 py-2 bg-sky-700 rounded-sm mt-10 mb-10' >Save & Update</button>
+            <button className=' px-4 py-2 text-white bg-sky-700 rounded-sm mt-10 mb-10 hover:bg-[#00BBA7] hover:scale-[1.1] transition ' >Save & Update</button>
           </form>
         </div>
         <Contact/>
