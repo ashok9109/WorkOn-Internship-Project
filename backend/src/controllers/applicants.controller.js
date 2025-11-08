@@ -87,7 +87,42 @@ const myApplicantsController = async (req, res) => {
             message: "error while fetching the my applicants"
         })
     }
+};
+
+
+// single applicants controller
+
+const singleApplicantController = async (req, res) => {
+    try {
+
+        const applicantId = req.params.id;
+
+        const applicant = await applicantsModel.findById(applicantId)
+            .populate("job", "title company location")
+            .populate("profile", " firstName lastName email number description dob age gender languages qualification experience resumeUrl photoUrl");
+
+
+
+        if (!applicant) {
+            return res.status(404).json({
+                success: false,
+                message: "Applicant not found",
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            applicant,
+        });
+
+    } catch (error) {
+        console.log("Single applicant fetch error:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Server error while fetching the single applicant",
+        });
+    }
 }
 
 
-module.exports = { applyJobController, myApplicantsController };
+module.exports = { applyJobController, myApplicantsController, singleApplicantController };

@@ -13,6 +13,7 @@ import ServicesPage from '../pages/ServicesPage'
 import ApplicantsPage from '../pages/ApplicantsPage'
 import CreateJobPage from '../pages/CreateJobPage'
 import JobDetailsPage from '../pages/jobDetailsPage'
+import ApplicantDetailsPage from '../pages/ApplicantDetailsPage'
 
 const AppRouter = () => {
 
@@ -52,6 +53,10 @@ const AppRouter = () => {
             {
               path:"applicants",
               element:<ApplicantsPage/>
+            },
+            {
+              path:"applicant/details/:id",
+              element:<ApplicantDetailsPage/>
             },
             {
               path:"jobs/details/:id",

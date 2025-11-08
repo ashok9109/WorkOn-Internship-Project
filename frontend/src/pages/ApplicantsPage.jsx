@@ -70,7 +70,7 @@ const ApplicantsPage = () => {
                   </a>
 
                   <Link
-                    to={`/applicants/${item._id}`}
+                    to={`/home/applicant/details/${item._id}`}
                     className="text-white bg-[#0A3D4C] px-3 py-1 rounded-lg text-sm hover:bg-[#09505f] transition-all"
                   >
                     View Details →

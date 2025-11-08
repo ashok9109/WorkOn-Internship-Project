@@ -14,3 +14,17 @@ export  const getMyApplicantsApi = async(req, res)=>{
         console.log("error fetching my applicants")
     }
 };
+
+
+export const singleApplicantApi = async(id)=>{
+    try {
+        const respones = await axiosInstance.get(`/api/applicants/single/${id}`);
+        if(respones){
+            return respones
+        }
+        
+    } catch (error) {
+        console.log("error fetching single applicant")
+        
+    }
+}
