@@ -46,13 +46,3 @@ export const applyJobApi = async(postId)=>{
     }
 };
 
-// get a single job api
-// export const singleJobApi = async()=>{
-//     try {
-
-//         const response = await axiosInstance.get("/api/job/single/post/")
-        
-//     } catch (error) {
-//         console.log("error fetch single job api", error)
-//     }
-// }

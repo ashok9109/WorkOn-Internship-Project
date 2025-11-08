@@ -25,11 +25,9 @@ const JobPage = () => {
     fetchJobs();
   }, []);
 
-
-
   return (
     <>
-      <section className=' w-[84%] bg-white ' >
+      <section className=' w-[84%] bg-gray-50 ' >
         <div className='h-screen w-full flex items-center justify-evenly  ' >
 
           {/* Left div */}

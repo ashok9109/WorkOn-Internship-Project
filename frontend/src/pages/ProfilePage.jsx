@@ -337,7 +337,7 @@ const ProfilePage = () => {
               </div>
             </div>
 
-            <button className=' px-4 py-2 text-white bg-sky-700 rounded-sm mt-10 mb-10 hover:bg-[#00BBA7] hover:scale-[1.1] transition ' >Save & Update</button>
+            <button className=' px-4 py-2 text-white bg-[#0A3D4C] rounded-sm mt-10 mb-10 hover:bg-[#00BBA7] hover:scale-[1.1] transition ' >Save & Update</button>
           </form>
         </div>
         <Contact/>

@@ -42,8 +42,6 @@ const NavLink = () => {
         }
     };
 
-
-
     return (
         <>
             <div className='h-full w-60 flex  flex-col  gap-10 shadow-2xl border-1 border-gray-300 mt-10 pt-5 pl-3' >
@@ -57,8 +55,8 @@ const NavLink = () => {
                         <RouterNavLink
                             key={label}
                             to={to}
-                            className={({ isActive }) => `flex gap-5 pl-2 text-xl opacity-[0.9] font-bold ${to === location.pathname
-                                ? "text-[#0A3D4C]" : ""
+                            className={({ isActive }) => `flex gap-5 pl-2 text-xl opacity-[0.9] hover:scale-[0.9] transition font-bold ${to === location.pathname
+                                ? "text-blue-500" : ""
                                 }`}
                         >
                             <Icon />
@@ -71,7 +69,7 @@ const NavLink = () => {
                 <div className='flex gap-5 pl-2' >
                     <h1 className='text-2xl text-red-600' ><i className="ri-logout-circle-line"></i></h1>
                     <button
-                        className='font-bold text-xl opacity-[0.9] text-red-600 underline '
+                        className='font-bold text-xl opacity-[0.9] text-red-600 underline hover:scale-[0.9] transition '
                         onClick={logoutUser}
                     >LogOut</button>
                 </div>

@@ -8,12 +8,12 @@ const applicantsSchema = new mongoose.Schema({
   },
   applicant: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
+    ref: "users",
     required: true,
   },
   profile: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Profile",
+    ref: "profiles",
   },
   resumeUrl: {
     type: String,

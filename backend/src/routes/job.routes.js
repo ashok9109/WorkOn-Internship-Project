@@ -7,7 +7,7 @@ const router = express.Router();
 // Create job post api
 router.post("/create/post",userMiddleware, createJobController );
 
-// get job post api
+// get all job post api
 router.get("/all/post", getAlljobcontroller);
 
 // get the single job post api
