@@ -16,6 +16,7 @@ export  const getMyApplicantsApi = async(req, res)=>{
 };
 
 
+// api for single applicant
 export const singleApplicantApi = async(id)=>{
     try {
         const respones = await axiosInstance.get(`/api/applicants/single/${id}`);
@@ -27,4 +28,4 @@ export const singleApplicantApi = async(id)=>{
         console.log("error fetching single applicant")
         
     }
-}
+};

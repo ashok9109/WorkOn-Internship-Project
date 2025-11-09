@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { createProfileApi, getProfileApi, updateProfileApi} from '../apis/profileApi';
+import { createProfileApi, getProfileApi, updateProfileApi } from '../apis/profileApi';
 import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
@@ -32,12 +32,12 @@ const ProfilePage = () => {
     formData.append("resume", data.resume[0])
 
     let respones;
-    if(profile){
+    if (profile) {
       respones = await updateProfileApi(formData);
-      toast.success("Profile updated")
-    }else{
+      toast.success("Profile updated ✅ ")
+    } else {
       respones = await createProfileApi(formData);
-      toast.success("Profile created successfully");
+      toast.success("Profile created successfully ✅ ");
     }
   };
 
@@ -104,10 +104,10 @@ const ProfilePage = () => {
                 <div className='h-full w-130 flex items-center justify-center text-center rounded-lg border-1 border-[#F9F9F9] bg-gray-100 relative' >
                   {previewCoverImage ? (
                     <div className='h-full w-full' >
-                    <img
-                      className='h-full w-full bg-cover bg-center rounded-sm hover:scale-[1.1] transition '
-                      src={previewCoverImage} alt="profile" />
-                  </div>
+                      <img
+                        className='h-full w-full bg-cover bg-center rounded-sm hover:scale-[1.1] transition '
+                        src={previewCoverImage} alt="profile" />
+                    </div>
                   ) : (
                     <h1 className='z-[1]' >Cover Image is not Upoaded</h1>
                   )}
@@ -340,8 +340,8 @@ const ProfilePage = () => {
             <button className=' px-4 py-2 text-white bg-[#0A3D4C] rounded-sm mt-10 mb-10 hover:bg-[#00BBA7] hover:scale-[1.1] transition ' >Save & Update</button>
           </form>
         </div>
-        <Contact/>
-        <Footer/>
+        <Contact />
+        <Footer />
       </section>
     </>
   )

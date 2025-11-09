@@ -14,6 +14,7 @@ import ApplicantsPage from '../pages/ApplicantsPage'
 import CreateJobPage from '../pages/CreateJobPage'
 import JobDetailsPage from '../pages/jobDetailsPage'
 import ApplicantDetailsPage from '../pages/ApplicantDetailsPage'
+import JobPostPage from '../pages/JobPostPage'
 
 const AppRouter = () => {
 
@@ -49,6 +50,10 @@ const AppRouter = () => {
             {
               path:"create-job",
               element:<CreateJobPage/>
+            },
+            {
+              path:"job-post",
+              element:<JobPostPage/>
             },
             {
               path:"applicants",

@@ -38,7 +38,7 @@ const CreateJobPage = () => {
             const payload = { ...data, skills };
             const respones = await createJobpostApi(payload);
             if (respones) {
-                setServerMsg("Job posted successfully!");
+                setServerMsg("Job posted successfully ✅");
             }
             reset();
             setSkills([]);

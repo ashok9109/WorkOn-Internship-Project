@@ -24,7 +24,7 @@ const SignupPage = ({ setToggle }) => {
     if (res) {
       navigate("/")
       console.log("user is Registered");
-      toast.success("Registered Successfully");
+      toast.success("Registered Successfully ✅ ");
     }
     reset();
   }

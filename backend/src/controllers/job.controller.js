@@ -66,35 +66,62 @@ const getAlljobcontroller = async (req, res) => {
     }
 };
 
-const getSingleJobController = async (req, res) => {
+// get my job post controller
+
+const getMyJobController = async (req, res) => {
     try {
 
-        const jobId = req.params.id;
+        const employerId = req.user._id;
 
-        const job = await jobModel
-        .findById(jobId)
-        .populate("postedBy", "firstName lastName email");
+        const jobs = await jobModel
+            .find({ postedBy: employerId })
+            .sort({ createdAt: -1 });
 
-        if(!job){
+
+        if (!jobs) {
             return res.status(404).json({
-                message:"single job post is not found"
+                message: "single jobs post is not found"
             })
         }
 
         res.status(200).json({
-            message:"single job fetched successfully",
-            job
+            message: "my jobs fetched successfully",
+            jobs
         })
-        
+
     } catch (error) {
         console.log("error to get the single job post", error);
         res.status(500).json({
-            message: "error while fetching single job"
+            message: "error while fetching my jobs"
         })
 
     };
 };
 
 
+// delete post controller
 
-module.exports = { createJobController, getAlljobcontroller,  getSingleJobController};
+const deletePostController = async (req, res) => {
+    try {
+        const jobId = req.params.id;
+
+        const job = await jobModel.findById(jobId);
+
+        await job.deleteOne();
+
+        res.status(200).json({
+            success: true,
+            message: "Job post deleted successfully ✅"
+        });
+
+    } catch (error) {
+        console.log("error to delete post");
+        res.status(500).json({
+            message: "error while delete the post"
+        })
+    }
+}
+
+
+
+module.exports = { createJobController, getAlljobcontroller, getMyJobController, deletePostController };

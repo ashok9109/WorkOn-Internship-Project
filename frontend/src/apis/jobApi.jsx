@@ -31,6 +31,20 @@ export const getAllJobApi = async () => {
 
 };
 
+// get my job post api
+export const getMyJobPostApi = async()=>{
+    try {
+        const respones = await axiosInstance.get("/api/job/my-posts");
+        if(respones){
+            return respones.data
+        }
+    } catch (error) {
+        console.log("error fetch my posts ", error);
+    }
+};
+
+
+
 // apply for job api
 export const applyJobApi = async(postId)=>{
     try {
@@ -45,4 +59,18 @@ export const applyJobApi = async(postId)=>{
         console.log("error applying job", error)
     }
 };
+
+// delete job post api
+
+export const delelteJobPostApi = async(postId)=>{
+    try {
+        const respones = await axiosInstance.delete(`/api/job/delete/post/${postId}`);
+        if(respones){
+            return respones.data
+        }
+        
+    } catch (error) {
+        console.log("error delete api", error)
+    }
+}
 

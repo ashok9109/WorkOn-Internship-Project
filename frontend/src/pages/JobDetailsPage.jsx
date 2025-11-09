@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { applyJobApi } from "../apis/jobApi";
 import { axiosInstance } from "../config/axiosinstance";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const JobDetailsPage = () => {
   const { id } = useParams();
@@ -24,7 +25,7 @@ const JobDetailsPage = () => {
 
     const respones = await applyJobApi({ jobId: id })
     if (respones) {
-      alert("Applied Successfully ✅");
+      toast.success("Applied Successfully ✅")
     }
 
   };
