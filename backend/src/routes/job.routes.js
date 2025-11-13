@@ -1,6 +1,6 @@
 const express = require("express");
 const { userMiddleware } = require("../middlewares/user.middleware");
-const { createJobController, getAlljobcontroller, getMyJobController, deletePostController, singleJobPostController } = require("../controllers/job.controller");
+const { createJobController, getAlljobcontroller, getMyJobController, deletePostController, singleJobPostController, getRecentlyJobsController } = require("../controllers/job.controller");
 
 const router = express.Router();
 
@@ -18,6 +18,9 @@ router.get("/single/post/:id", userMiddleware, singleJobPostController );
 
 // delete job post api
 router.delete("/delete/post/:id", deletePostController);
+
+// recent jobs post api
+router.get("/recent/jobs", getRecentlyJobsController);
 
 
 module.exports = router;

@@ -99,27 +99,27 @@ const getMyJobController = async (req, res) => {
 };
 
 // single job post controller
-const singleJobPostController = async(req, res)=>{
-     try {
-    const jobId = req.params.id;
+const singleJobPostController = async (req, res) => {
+    try {
+        const jobId = req.params.id;
 
-    const job = await jobModel.findById(jobId);
+        const job = await jobModel.findById(jobId);
 
-    if (!job) {
-      return res.status(404).json({ message: "Job not found" });
+        if (!job) {
+            return res.status(404).json({ message: "Job not found" });
+        }
+
+        res.status(200).json({
+            message: "Single job post fetched successfully",
+            job,
+        });
+
+    } catch (error) {
+        console.log("Error in fetching single job post", error);
+        res.status(500).json({
+            message: "Server error",
+        });
     }
-
-    res.status(200).json({
-      message: "Single job post fetched successfully",
-      job,
-    });
-
-  } catch (error) {
-    console.log("Error in fetching single job post", error);
-    res.status(500).json({
-      message: "Server error",
-    });
-  }
 };
 
 
@@ -147,5 +147,34 @@ const deletePostController = async (req, res) => {
 };
 
 
+// dashboard controller for recently job posts
+const getRecentlyJobsController = async (req, res) => {
+    try {
 
-module.exports = { createJobController, getAlljobcontroller, getMyJobController, singleJobPostController , deletePostController };
+        const recentJobs = await jobModel
+            .find()
+            .sort({ createdAt: -1 })
+            .limit(2)
+            .select("title companyName location salary jobType createdAt");
+
+        res.status(200).json({
+            success: true,
+            recommended: recentJobs,
+        });
+
+    } catch (error) {
+        console.error("Error fetching recent jobs:", error);
+        res.status(500).json({
+            success: false,
+            message: "Server error fetching recent jobs",
+        });
+    }
+}
+
+
+module.exports = { createJobController,
+     getAlljobcontroller,
+      getMyJobController,
+       singleJobPostController, 
+       deletePostController,
+    getRecentlyJobsController };

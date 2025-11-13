@@ -72,5 +72,18 @@ export const delelteJobPostApi = async(postId)=>{
     } catch (error) {
         console.log("error delete api", error)
     }
-}
+};
+
+// fatching the recent jobs api
+export const getRecentJobsApi = async()=>{
+    try {
+        const respones = await axiosInstance.get("/api/job/recent/jobs");
+        if(respones){
+            return respones.data;
+        }
+        
+    } catch (error) {
+        console.log("error fetching the recent jobs", error)
+    }
+};
 

@@ -36,3 +36,16 @@ export const updateProfileApi = async (data) => {
         console.log("error in the update profile", error);
     }
 };
+
+// this the job seeker profile progress api
+export const getProfileProgressAPi = async()=>{
+    try {
+        const respones = await axiosInstance.get("/api/user/profile/progress");
+        if(respones){
+            return respones.data;
+        }
+        
+    } catch (error) {
+        console.log("error in fetching the profile progress ", error);
+    }
+}

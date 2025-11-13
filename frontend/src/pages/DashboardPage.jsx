@@ -4,9 +4,10 @@ import { Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import Footer from '../components/Footer'
 import Contact from '../components/Contact'
-import { delelteJobPostApi, getMyJobPostApi } from "../apis/jobApi";
+import { delelteJobPostApi, getMyJobPostApi, getRecentJobsApi } from "../apis/jobApi";
 import { getAppliedJobsApi, getMyApplicantsApi } from "../apis/applicantsApi";
 import { dashboardSummaryApi } from "../apis/dashboardApi";
+import { getProfileProgressAPi } from "../apis/profileApi";
 
 // ---------- Helper API calls ----------
 const fetchDashboardSummary = async () => {
@@ -35,17 +36,17 @@ const fetchAppliedJobs = async () => {
   const res = await getAppliedJobsApi();
   return res.applied || [];
 };
-const fetchSavedJobs = async () => {
-  // const res = await axiosInstance.get("/api/jobs/saved"); 
-  // return res.data.saved || [];
-};
+// const fetchSavedJobs = async () => {
+//   const res = await axiosInstance.get("/api/jobs/saved"); 
+//   return res.data.saved || [];
+// };
 const fetchRecommendedJobs = async () => {
-  // const res = await axiosInstance.get("/api/jobs/recommended");            
-  // return res.data.recommended || [];
+  const res = await getRecentJobsApi()
+  return res.recommended || [];
 };
 const fetchProfileProgress = async () => {
-  // const res = await axiosInstance.get("/api/profile/progress");        
-  // return res.data || { percent: 0 };
+  const res = await getProfileProgressAPi();
+  return res || { percent: 0 };
 };
 
 // ---------- Small reusable UI parts ----------
@@ -177,7 +178,8 @@ const JobSeekerDashboard = ({ profileProgress, appliedJobs, savedJobs, recommend
         <div className="p-4 rounded-lg shadow-sm bg-white border">
           <div className="text-sm text-gray-500">Saved Jobs</div>
           <div className="mt-3 text-2xl font-bold">{savedJobs?.length ?? 0}</div>
-          <Link to="/home/saved" className="text-sm text-blue-600 mt-2 inline-block">View saved</Link>
+          <h1 className="text-sm text-blue-600 mt-2 inline-block" >View saved</h1>
+          {/* <Link to="/home/saved" className="text-sm text-blue-600 mt-2 inline-block">View saved</Link> */}
         </div>
       </div>
 
@@ -209,7 +211,7 @@ const JobSeekerDashboard = ({ profileProgress, appliedJobs, savedJobs, recommend
           ) : (
             <div className="space-y-3">
               {recommended.slice(0, 6).map((job) => (
-                <Link key={job._id} to={`/jobs/${job._id}`} className="block p-3 rounded border hover:shadow-sm">
+                <Link key={job._id} to={`/home/jobs/details/${job._id}`} className="block p-3 rounded border hover:shadow-sm">
                   <div className="font-semibold">{job.title}</div>
                   <div className="text-sm text-gray-600">{job.company} • {job.location}</div>
                 </Link>

@@ -1,6 +1,6 @@
 const express = require("express");
 const upload = require("../db/multer");
-const { createProfileController, updateProfileController, getProfileController } = require("../controllers/profile.controller");
+const { createProfileController, updateProfileController, getProfileController, getPorfileProgressController } = require("../controllers/profile.controller");
 const { userMiddleware } = require("../middlewares/user.middleware");
 
 const router = express.Router();
@@ -27,6 +27,9 @@ router.put("/profile/update", userMiddleware,
     ]),
      updateProfileController );
 
+ // this the profile progress api
+ 
+router.get("/profile/progress", userMiddleware , getPorfileProgressController);
 
 
 module.exports = router;

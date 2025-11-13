@@ -162,13 +162,72 @@ const getProfileController = async (req, res) => {
         console.log("error in the get profile", error)
     }
 
+};
+
+// this is the dashboard api controller for job seeker to so the profile progress
+
+const getPorfileProgressController = async (req, res) => {
+    try {
+        const userId = req.user._id;
+
+        const profile = await profileModel.findOne({ user: userId })
+
+        if (!profile) {
+            return res.status(200).json({
+                success: true,
+                percent: 0,
+                message: "Profile not found",
+            });
+        }
+
+        const fieldsToCheck = [
+            "photoUrl",
+            "coverImageUrl",
+            "firstName",
+            "lastName",
+            "email",
+            "number",
+            "description",
+            "dob",
+            "age",
+            "gender",
+            "languages",
+            "qualification",
+            "experience",
+            "resumeUrl",
+        ];
+
+        let filledCount = 0;
+
+        fieldsToCheck.map((field) => {
+            if (profile[field] && profile[field] !== "") {
+                filledCount++
+            }
+        })
+
+        const percent = Math.round((filledCount / fieldsToCheck.length) * 100);
+
+        res.status(200).json({
+            success: true,
+            percent,
+        });
+
+
+    } catch (error) {
+        console.log("Error fetching profile progress:", error);
+        res.status(500).json({
+            success: false,
+            message: "Server error while calculating profile progress",
+        });
+    }
 }
 
 
 
 
 module.exports = {
-  createProfileController,
-  updateProfileController,
-  getProfileController
+    createProfileController,
+    updateProfileController,
+    getProfileController,
+    getPorfileProgressController
 };
