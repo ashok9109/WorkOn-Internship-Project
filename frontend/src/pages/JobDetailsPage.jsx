@@ -14,6 +14,7 @@ const JobDetailsPage = () => {
   useEffect(() => {
     async function fetchJob() {
       const res = await axiosInstance.get(`/api/job/single/post/${id}`);
+      console.log("this is the job details page", res)
       setJob(res.data.job);
     }
     fetchJob();
@@ -32,7 +33,7 @@ const JobDetailsPage = () => {
 
   const deleteJob = async() =>{
 
-  }
+  };
 
   return (
     <>

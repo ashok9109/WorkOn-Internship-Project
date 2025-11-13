@@ -3,8 +3,6 @@ const imageKitSendFiles = require("../services/storage.services");
 const { findByIdAndUpdate } = require("../models/user.model");
 
 
-
-
 // create profile controller
 
 const createProfileController = async (req, res) => {

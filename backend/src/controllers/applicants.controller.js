@@ -3,7 +3,7 @@ const jobModel = require("../models/job.Model");
 const profileModel = require("../models/profile.Model");
 
 
-
+// job apply controller 
 const applyJobController = async (req, res) => {
 
     try {
@@ -122,7 +122,52 @@ const singleApplicantController = async (req, res) => {
             message: "Server error while fetching the single applicant",
         });
     }
+};
+
+
+// it is dashboard api to show the applied jobs controller
+
+const getAppliedJobsController = async (req, res) => {
+    try {
+
+        const userId = req.user._id;
+
+        const applications = await applicantsModel
+            .find({ applicant: userId })
+            .populate("job", "title company location salary jobType")
+            .sort({ createdBy: -1 });
+
+        if (!applications.length) {
+            return res.status(200).json({
+                success: true,
+                applied: [],
+                message: "no applied job found"
+            })
+        }
+
+        const appliedJobs = applications.map(app => ({
+            _id: app.job._id,
+            title: app.job.title,
+            company: app.job.company,
+            location: app.job.location,
+            salary: app.job.salary,
+            jobType: app.job.jobType,
+            appliedAt: app.createdAt,
+        }));
+
+        res.status(200).json({
+            success: true,
+            applied: appliedJobs,
+        });
+
+    } catch (error) {
+        console.log("Error fetching applied jobs:", error);
+        res.status(500).json({
+            success: false,
+            message: "Server error fetching applied jobs",
+        });
+    }
 }
 
 
-module.exports = { applyJobController, myApplicantsController, singleApplicantController };
+module.exports = { applyJobController, myApplicantsController, singleApplicantController, getAppliedJobsController };

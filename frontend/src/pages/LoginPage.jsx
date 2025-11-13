@@ -11,7 +11,7 @@ const LoginPage = ({ setToggle }) => {
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-  const [role, setrole] = useState("job seeker");
+  const [role, setrole] = useState("Job Seeker");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -43,16 +43,16 @@ const LoginPage = ({ setToggle }) => {
             <div className="flex gap-10 mt-4 " >
               <button
                 type="button"
-                onClick={() => setrole("job seeker")}
+                onClick={() => setrole("Job Seeker")}
                 className={`px-5 py-1 rounded-sm border-1
-              ${role === "job seeker" ? "bg-[#175898]" : "bg-[#CBF1EE]"}
+              ${role === "Job Seeker" ? "bg-[#175898]" : "bg-[#CBF1EE]"}
               `}
               >Job Seeker</button>
               <button
                 type="button"
-                onClick={() => setrole("employer")}
+                onClick={() => setrole("Employer")}
                 className={`px-5 py-1  rounded-sm border-1
-              ${role === "employer" ? "bg-[#175898]" : "bg-[#CBF1EE]"}
+              ${role === "Employer" ? "bg-[#175898]" : "bg-[#CBF1EE]"}
               `}
               >Employer</button>
             </div>

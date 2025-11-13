@@ -5,6 +5,7 @@ const cors = require("cors");
 const profileRouter = require("./routes/profile.routes");
 const jobRouter = require("./routes/job.routes");
 const applicantsRouter = require("./routes/applicants.routes");
+const dashboardRouter = require("./routes/dashboard.routes");
 
 
 const app = express();
@@ -22,6 +23,9 @@ app.use(cookieParser())
 // user api
 app.use("/api/user", userRouter);
 
+// dashboard api
+app.use("/api/dashboard", dashboardRouter);
+
 // profile api
 app.use("/api/user", profileRouter);
 
@@ -29,6 +33,7 @@ app.use("/api/user", profileRouter);
 app.use("/api/job", jobRouter);
 
 // applicants api
-app.use("/api/applicants",applicantsRouter);
+app.use("/api/applicants", applicantsRouter);
+
 
 module.exports = app;

@@ -82,6 +82,12 @@ const loginController = async (req, res) => {
             })
         }
 
+        if(role !== user.role){
+            return res.status(400).json({
+                message:"Role is incorrect"
+            })
+        }
+
         const decryptpass = await bcrypt.compare(password, user.password);
 
         if (!decryptpass) {

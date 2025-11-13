@@ -98,6 +98,30 @@ const getMyJobController = async (req, res) => {
     };
 };
 
+// single job post controller
+const singleJobPostController = async(req, res)=>{
+     try {
+    const jobId = req.params.id;
+
+    const job = await jobModel.findById(jobId);
+
+    if (!job) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+
+    res.status(200).json({
+      message: "Single job post fetched successfully",
+      job,
+    });
+
+  } catch (error) {
+    console.log("Error in fetching single job post", error);
+    res.status(500).json({
+      message: "Server error",
+    });
+  }
+};
+
 
 // delete post controller
 
@@ -120,8 +144,8 @@ const deletePostController = async (req, res) => {
             message: "error while delete the post"
         })
     }
-}
+};
 
 
 
-module.exports = { createJobController, getAlljobcontroller, getMyJobController, deletePostController };
+module.exports = { createJobController, getAlljobcontroller, getMyJobController, singleJobPostController , deletePostController };
