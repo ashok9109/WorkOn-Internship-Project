@@ -49,7 +49,7 @@ const CreateJobPage = () => {
     };
     return (
         <>
-            <section className='min-h-screen w-[84%] flex flex-col items-center justify-center bg-gray-100 ' >
+            <section className='min-h-screen w-fullflex flex-col items-center justify-center bg-gray-100 ' >
                 <div className=" h-full -w-full p-8 rounded-xl shadow-lg max-w-2xl mx-auto my-10 bg-white">
                     <h2 className="text-2xl text-center font-bold mb-8 text-[#0A3D4C]">
                         Create a New Job Posting

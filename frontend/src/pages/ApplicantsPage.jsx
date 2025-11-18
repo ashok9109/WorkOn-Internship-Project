@@ -80,9 +80,9 @@ const ApplicantsPage = () => {
             ))}
           </div>
         )}
+      </section>
         <Contact />
         <Footer />
-      </section>
     </>
   );
 };

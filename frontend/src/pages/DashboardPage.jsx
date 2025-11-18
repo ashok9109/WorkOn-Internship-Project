@@ -232,7 +232,7 @@ const DeshboardPage = () => {
   const [myPosts, setMyPosts] = useState([]);
   const [applicants, setApplicants] = useState([]);
   const [appliedJobs, setAppliedJobs] = useState([]);
-  const [savedJobs, setSavedJobs] = useState([]);
+  // const [savedJobs, setSavedJobs] = useState([]);
   const [recommended, setRecommended] = useState([]);
   const [profileProgress, setProfileProgress] = useState({ percent: 0 });
   const navigate = useNavigate();
@@ -265,12 +265,12 @@ const DeshboardPage = () => {
 
         if (role === "Job Seeker") {
           const applied = await fetchAppliedJobs().catch(() => []);
-          const saved = await fetchSavedJobs().catch(() => []);
+          // const saved = await fetchSavedJobs().catch(() => []);
           const rec = await fetchRecommendedJobs().catch(() => []);
           const prog = await fetchProfileProgress().catch(() => ({ percent: 0 }));
           if (!mounted) return;
           setAppliedJobs(applied);
-          setSavedJobs(saved);
+          // setSavedJobs(saved);
           setRecommended(rec);
           setProfileProgress(prog);
         }
@@ -335,7 +335,8 @@ const DeshboardPage = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <>
+    <div className="max-w-7xl mx-auto px-4 py-8 bg-gray-100 ">
       <h1 className="text-4xl font-bold text-[#0A3D4C] mb-6">Dashboard</h1>
 
       {role === "Employer" && (
@@ -352,13 +353,14 @@ const DeshboardPage = () => {
         <JobSeekerDashboard
           profileProgress={profileProgress}
           appliedJobs={appliedJobs}
-          savedJobs={savedJobs}
+          // savedJobs={savedJobs}
           recommended={recommended}
         />
       )}
+    </div>
       <Contact />
       <Footer />
-    </div>
+    </>
   );
 };
 

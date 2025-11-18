@@ -30,8 +30,8 @@ const Contact = () => {
     }
 
     return (
-        <section className="min-h-screen w-full bg-gray-100 flex flex-col  items-center justify-center px-6 mb-10 py-12 gap-10">
-            <div className="min-h-[90%] w-[85%] flex items-center justify-center md:flex-row bg-[#0a3d4c] rounded-lg px-6 py-12 gap-10 " >
+        <section className="h-screen w-full bg-gray-100 flex flex-col  items-center justify-center px-6 mb-10 py-12 gap-10">
+            <div className="h-[90%] w-[85%] flex items-center justify-center md:flex-row bg-[#0a3d4c] rounded-lg px-6 py-12 gap-10 " >
 
                 {/* Left Side */}
                 <div className="flex-1 text-white flex flex-col justify-center gap-8 max-w-sm">
