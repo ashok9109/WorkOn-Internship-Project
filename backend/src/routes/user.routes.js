@@ -1,5 +1,5 @@
 const express = require("express");
-const { signupController, loginController, logoutController } = require("../controllers/user.controller");
+const { signupController, loginController, logoutController, changePasswordController } = require("../controllers/user.controller");
 const { userMiddleware } = require("../middlewares/user.middleware");
 
 const router = express.Router();
@@ -20,6 +20,9 @@ router.post("/login", loginController);
 
 // user logout api
 router.post("/logout", userMiddleware ,  logoutController);
+
+// change password api
+router.put("/change-password", userMiddleware, changePasswordController);
 
 
 module.exports = router;

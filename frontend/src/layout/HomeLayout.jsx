@@ -4,13 +4,20 @@ import NavLink from "../components/NavLink";
 
 const HomeLayout = () => {
   return (
-    <div className="flex" >
-    <div className="mt-15" >
-      <NavLink />
-    </div>
-      <Outlet/>
-    </div>
+    <>
+      <div className="flex ">
+        {/* Sidebar */}
+        <div className="mt-15">
+          <NavLink />
+        </div>
+
+        {/* Page Content */}
+        <div className="flex-1 p-6 bg-gray-100">
+          <Outlet />
+        </div>
+      </div>
+    </>
   )
-}
+};
 
 export default HomeLayout;

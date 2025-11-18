@@ -59,7 +59,7 @@ const signupController = async (req, res) => {
 
     } catch (error) {
         console.log("error in signup", error)
-       
+
     }
 };
 
@@ -82,9 +82,9 @@ const loginController = async (req, res) => {
             })
         }
 
-        if(role !== user.role){
+        if (role !== user.role) {
             return res.status(400).json({
-                message:"Role is incorrect"
+                message: "Role is incorrect"
             })
         }
 
@@ -150,5 +150,59 @@ const logoutController = async (req, res) => {
     }
 };
 
+// change password controller 
+const changePasswordController = async (req, res) => {
+    try {
+        const userId = req.user._id;
 
-module.exports = { signupController, loginController, logoutController };
+        const { currentPassword, newPassword } = req.body;
+
+        if (!currentPassword || !newPassword) {
+            return res.status(400).json({
+                message: "all field are required"
+            })
+        }
+
+        const user = await userModel.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({
+                message: "user is not found"
+            })
+        }
+
+        const isMatch = await bcrypt.compare(currentPassword, user.password);
+
+        if (!isMatch) {
+            return res.status(400).json({
+                message: "current password is incorrect"
+            })
+        }
+
+        const hashPassword = await bcrypt.hash(newPassword, 10);
+
+        user.password = hashPassword;
+
+        await user.save()
+
+        res.status(200).json({
+            success: true,
+            message: "Password changed successfully",
+        });
+
+    } catch (error) {
+        console.log("Error changing password:", error);
+        res.status(500).json({
+            success: false,
+            message: "Server error changing password",
+        });
+    }
+}
+
+
+module.exports = {
+    signupController,
+    loginController,
+    logoutController,
+    changePasswordController
+};
