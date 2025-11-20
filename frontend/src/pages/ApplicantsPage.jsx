@@ -22,7 +22,7 @@ const ApplicantsPage = () => {
   return (
     <>
       <section className="max-w-6xl mx-auto mt-10 p-6 bg-white shadow-xl rounded-xl border border-gray-200">
-        <h2 className="text-3xl font-bold mb-6 text-[#0A3D4C] border-b pb-3">
+        <h2 className="text-3xl font-bold mb-6 font4 border-b pb-3">
           Applicants List
         </h2>
 
@@ -39,14 +39,14 @@ const ApplicantsPage = () => {
               >
                 {/* Job title */}
                 <div className="mb-2">
-                  <h3 className="text-lg font-bold text-[#0A3D4C]">
+                  <h3 className="text-lg font-bold text-[#0A3D4C] font7">
                     {item.job?.title}
                   </h3>
                   <span className="text-sm text-gray-500">{item.job?.company}</span>
                 </div>
 
                 {/* Applicant details */}
-                <div className="space-y-1 text-[15px]">
+                <div className="space-y-1 text-[15px] font2 ">
                   <p className="text-gray-700 font-medium">
                     👤 {item.profile?.firstName} {item.profile?.lastName}
                   </p>

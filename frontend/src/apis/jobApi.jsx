@@ -61,7 +61,6 @@ export const applyJobApi = async(postId)=>{
 };
 
 // delete job post api
-
 export const delelteJobPostApi = async(postId)=>{
     try {
         const respones = await axiosInstance.delete(`/api/job/delete/post/${postId}`);

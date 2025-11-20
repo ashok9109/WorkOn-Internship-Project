@@ -37,7 +37,7 @@ const JobPostPage = () => {
   return (
     <>
       <section className="w-full mx-auto mt-10 px-4 ">
-        <h2 className="text-3xl font-bold text-[#0A3D4C] mb-6">My Job Posts</h2>
+        <h2 className="text-3xl font-bold font4 mb-6">My Job Posts</h2>
 
         {myJobs.length === 0 ? (
           <p className="text-center text-gray-600">No job posts created yet!</p>
@@ -46,12 +46,12 @@ const JobPostPage = () => {
             {myJobs.map((job) => (
               <div key={job._id} className="bg-white shadow-md p-6 rounded-lg border hover:shadow-lg transition">
                 {/* Job Header */}
-                <h3 className="text-xl font-bold text-[#0A3D4C]">{job.title}</h3>
-                <p className="text-gray-700 font-medium">{job.company}</p>
-                <p className="text-sm text-gray-500">{job.location}</p>
+                <h3 className="text-xl font-bold text-[#0A3D4C] font7">{job.title}</h3>
+                <p className="text-gray-700 font-medium font9">{job.company}</p>
+                <p className="text-sm text-gray-500 font1 ">{job.location}</p>
 
                 {/* Details */}
-                <div className="mt-3 text-sm text-gray-700">
+                <div className="mt-3 text-sm text-gray-700 font2">
                   <p><span className="font-semibold">Salary:</span> {job.salary}</p>
                   <p><span className="font-semibold">Type:</span> {job.jobType}</p>
                   <p><span className="font-semibold">Qualification:</span> {job.qualification}</p>
@@ -63,7 +63,7 @@ const JobPostPage = () => {
                   {/* View Applicants */}
                   <Link
                     to={'/home/applicants'}
-                    className="text-blue-600 underline text-sm"
+                    className="text-blue-600 underline text-sm font7"
                   >
                     View Applicants →
                   </Link>
@@ -71,7 +71,7 @@ const JobPostPage = () => {
                   {/* Delete Button */}
                   <button
                     onClick={() => deletePost(job._id)}
-                    className="text-red-600 font-semibold hover:underline"
+                    className="text-red-600 font-semibold hover:underline font2"
                   >
                     Delete ❌
                   </button>

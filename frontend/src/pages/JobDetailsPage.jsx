@@ -38,7 +38,7 @@ const JobDetailsPage = () => {
     <>
       <section className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg mt-8">
         {/* Title & Company */}
-        <h1 className="text-3xl font-bold text-[#0A3D4C]">{job.title}</h1>
+        <h1 className="text-3xl font-bold font4">{job.title}</h1>
         <p className="text-lg font-medium text-gray-700 mt-1">{job.company}</p>
 
         {/* Location & Type */}

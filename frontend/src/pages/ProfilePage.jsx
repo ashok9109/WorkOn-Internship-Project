@@ -72,7 +72,7 @@ const ProfilePage = () => {
   return (
     <>
       <section className='min-h-screen w-full bg-gray-200 rounded-lg pt-10 pl-30 pr-30 '  >
-        <h1 className='text-3xl mb-10 underline text-center' >Profile Settings</h1>
+        <h1 className='text-3xl mb-10  text-center font-bold text-[#0A3D4C] font7 ' >PROFILE SETTINGS</h1>
         <div className='min-h-screen w-full bg-[#FFFFFF] mb-10 ' >
           <form
             onSubmit={handleSubmit(onSubmit)}

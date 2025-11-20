@@ -31,7 +31,7 @@ const JobPage = () => {
         <div className='h-screen w-full flex items-center justify-evenly  ' >
 
           {/* Left div */}
-          <div className='h-[100%] w-[45%] pt-20 ' >
+          <div className='h-[100%] w-[45%] pt-20 font2 ' >
             <h1 className='text-4xl font-bold mt-30 ml-15 mb-4 ' >Find the perfect <br /> job for you </h1>
             <h3 className='opacity-[0.7] ml-15' >Fill your job in hours, not weeks. Search for free.</h3>
             <form className='h-[30%] w-[90%] flex items-center justify-center ml-10' >
@@ -119,14 +119,14 @@ const JobPage = () => {
 
         {/* showing the jobs */}
         <div className="min-h-screen bg-gray-100 py-10">
-          <h1 className="text-3xl font-bold text-center mb-8 text-[#15803D]">
+          <h1 className="text-3xl font-bold text-center mb-8  font4">
             Available Job Openings
           </h1>
 
-          <div className="w-10/12 mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6  ">
+          <div className="w-11/12 mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8  ">
             {jobs?.map((job) => (
-              <div key={job._id} className="bg-white shadow-md p-5 rounded-lg hover:scale-[1.1] transition ">
-                <h2 className="text-xl font-bold">{job.title}</h2>
+              <div key={job._id} className="bg-white shadow-md p-5 rounded-lg hover:scale-[0.9] transition ">
+                <h2 className="text-xl font-bold font7 text-[#0A3D4C] ">{job.title}</h2>
                 <p className="text-gray-600">Company :- {job.company}</p>
                 <p className="mt-2 text-sm">
                   📍 {job.location} | 💼 {job.jobType}

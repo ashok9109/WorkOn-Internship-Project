@@ -51,7 +51,7 @@ const CreateJobPage = () => {
         <>
             <section className='min-h-screen w-fullflex flex-col items-center justify-center bg-gray-100 ' >
                 <div className=" h-full -w-full p-8 rounded-xl shadow-lg max-w-2xl mx-auto my-10 bg-white">
-                    <h2 className="text-2xl text-center font-bold mb-8 text-[#0A3D4C]">
+                    <h2 className="text-2xl text-center font-bold mb-8 font4">
                         Create a New Job Posting
                     </h2>
                     <form onSubmit={handleSubmit(onSubmit)} className="h-full w-full space-y-6">

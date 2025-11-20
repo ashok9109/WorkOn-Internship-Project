@@ -41,7 +41,7 @@ const SettingsPage = () => {
   return (
     <>
       <section className=" w-full flex flex-col items-center justify-center  mt-12 p-8 bg-while ">
-        <h2 className="text-2xl font-bold text-[#0A3D4C] mb-6 flex items-center gap-2 ">
+        <h2 className="text-2xl font-bold font7 text-[#0A3D4C]  mb-6 flex items-center gap-2 ">
           <Lock className="text-[#0A3D4C]" /> Account Settings
         </h2>
 

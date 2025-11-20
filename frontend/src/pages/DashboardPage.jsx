@@ -65,7 +65,7 @@ const EmployerDashboard = ({ summary, myPosts, applicants, onDelete }) => {
   return (
     <div className="space-y-6">
       {/* top stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 font1">
         <StatCard label="Total Applicants" value={summary?.totalApplicants ?? 0} />
         <StatCard label="Total Job Posts" value={summary?.totalPosts ?? 0} />
         <StatCard label="Active Posts" value={summary?.activePosts ?? 0} />
@@ -79,9 +79,9 @@ const EmployerDashboard = ({ summary, myPosts, applicants, onDelete }) => {
       </div>
 
       {/* Recent applicants */}
-      <div className="bg-white p-4 rounded-lg border">
+      <div className="bg-white p-4 rounded-lg border font1">
         <div className="flex justify-between items-center mb-3">
-          <h3 className="text-lg font-bold text-[#0A3D4C]">Recent Applicants</h3>
+          <h3 className="text-lg font-bold text-[#0A3D4C] font7">RECENT APPLICANTS</h3>
           <Link to="/home/applicants" className="px-3 py-2 bg-[#00BBA7] text-white rounded hover:scale-[1.1] transition ">View all Applicants</Link>
         </div>
 
@@ -92,8 +92,8 @@ const EmployerDashboard = ({ summary, myPosts, applicants, onDelete }) => {
             {applicants.slice(0, 5).map((a) => (
               <div key={a._id} className="flex items-center justify-between p-3 rounded border bg-[#FAFEFF]">
                 <div>
-                  <div className="font-semibold">{a.profile?.firstName} {a.profile?.lastName}</div>
-                  <div className="text-sm text-gray-600">{a.job?.title} • {a.profile?.email}</div>
+                  <div className="font-semibold font">{a.profile?.firstName} {a.profile?.lastName}</div>
+                  <div className="text-sm text-gray-600 font1">{a.job?.title} • {a.profile?.email}</div>
                 </div>
                 <div className="flex gap-2 items-center">
                   <a href={a.resumeUrl} target="_blank" rel="noreferrer" className="text-sm text-blue-600">Resume</a>
@@ -106,9 +106,9 @@ const EmployerDashboard = ({ summary, myPosts, applicants, onDelete }) => {
       </div>
 
       {/* My posts table */}
-      <div className="bg-white p-4 rounded-lg border">
+      <div className="bg-white p-4 rounded-lg border font1">
         <div className="flex justify-between items-center mb-3">
-          <h3 className="text-lg font-bold text-[#0A3D4C]">My Job Posts</h3>
+          <h3 className="text-lg font-bold font7 text-[#0A3D4C]">MY JOB POSTS</h3>
           <Link to="/home/job-post" className="px-3 py-2 bg-[#00BBA7] text-white rounded hover:scale-[1.1] transition ">View All Post</Link>
 
         </div>
@@ -120,7 +120,7 @@ const EmployerDashboard = ({ summary, myPosts, applicants, onDelete }) => {
             <table className="min-w-full table-auto">
               <thead>
                 <tr className="text-left text-sm text-gray-500">
-                  <th className="p-2">Title</th>
+                  <th className="p-2 ">Title</th>
                   <th className="p-2">Location</th>
                   <th className="p-2">Type</th>
                   <th className="p-2">Salary</th>
@@ -131,7 +131,7 @@ const EmployerDashboard = ({ summary, myPosts, applicants, onDelete }) => {
               <tbody>
                 {myPosts.map((job) => (
                   <tr key={job._id} className="border-t">
-                    <td className="p-2">{job.title}</td>
+                    <td className="p-2 font-bold font1 ">{job.title}</td>
                     <td className="p-2">{job.location}</td>
                     <td className="p-2">{job.jobType}</td>
                     <td className="p-2">{job.salary}</td>
@@ -157,7 +157,7 @@ const JobSeekerDashboard = ({ profileProgress, appliedJobs, savedJobs, recommend
   return (
     <div className="space-y-6">
       {/* Top row: Profile progress + quick cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font1">
         <div className="p-4 rounded-lg shadow-sm bg-white border">
           <div className="text-sm text-gray-500">Profile Completion</div>
           <div className="mt-3">
@@ -170,7 +170,7 @@ const JobSeekerDashboard = ({ profileProgress, appliedJobs, savedJobs, recommend
         </div>
 
         <div className="p-4 rounded-lg shadow-sm bg-white border">
-          <div className="text-sm text-gray-500">Applied Jobs</div>
+          <div className="text-sm text-gray-500 ">Applied Jobs</div>
           <div className="mt-3 text-2xl font-bold">{appliedJobs?.length ?? 0}</div>
           <Link to="/home/applied" className="text-sm text-blue-600 mt-2 inline-block">View applied jobs</Link>
         </div>
@@ -186,7 +186,7 @@ const JobSeekerDashboard = ({ profileProgress, appliedJobs, savedJobs, recommend
       {/* Lists: applied + recommended */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white p-4 rounded-lg border">
-          <h3 className="font-bold text-[#0A3D4C] mb-3">Recently Applied</h3>
+          <h3 className="font-bold text-[#0A3D4C] mb-3 font7 ">RECENTLY APPLIED </h3>
           {!appliedJobs?.length ? (
             <div className="text-gray-500">You haven't applied to any jobs yet.</div>
           ) : (
@@ -194,7 +194,7 @@ const JobSeekerDashboard = ({ profileProgress, appliedJobs, savedJobs, recommend
               {appliedJobs.slice(0, 6).map((a) => (
                 <div key={a._id} className="p-3 rounded border bg-[#FAFEFF] flex justify-between">
                   <div>
-                    <div className="font-semibold">{a.title}</div>
+                    <div className="font-semibold font1">{a.title}</div>
                     <div className="text-sm text-gray-600">{a.company}</div>
                   </div>
                   <div className="text-sm text-gray-500">{new Date(a.appliedAt).toLocaleDateString()}</div>
@@ -205,14 +205,14 @@ const JobSeekerDashboard = ({ profileProgress, appliedJobs, savedJobs, recommend
         </div>
 
         <div className="bg-white p-4 rounded-lg border">
-          <h3 className="font-bold text-[#0A3D4C] mb-3">Recommended for you</h3>
+          <h3 className="font-bold text-[#0A3D4C] mb-3 font7">RECOMMENDED FOR YOU</h3>
           {!recommended?.length ? (
             <div className="text-gray-500">No recommendations yet.</div>
           ) : (
             <div className="space-y-3">
               {recommended.slice(0, 6).map((job) => (
                 <Link key={job._id} to={`/home/jobs/details/${job._id}`} className="block p-3 rounded border hover:shadow-sm">
-                  <div className="font-semibold">{job.title}</div>
+                  <div className="font-semibold font1">{job.title}</div>
                   <div className="text-sm text-gray-600">{job.company} • {job.location}</div>
                 </Link>
               ))}
@@ -336,28 +336,28 @@ const DeshboardPage = () => {
 
   return (
     <>
-    <div className="max-w-7xl mx-auto px-4 py-8 bg-gray-100 ">
-      <h1 className="text-4xl font-bold text-[#0A3D4C] mb-6">Dashboard</h1>
+      <div className="max-w-7xl mx-auto px-4 py-8 bg-gray-100 ">
+        <h1 className="text-4xl font-bold text-[#0A3D4C] mb-6 font7 ">DASHBOARD</h1>
 
-      {role === "Employer" && (
-        <EmployerDashboard
-          summary={summary}
-          myPosts={myPosts}
-          applicants={applicants}
-          refreshMyPosts={refreshMyPosts}
-          onDelete={handleDelete}
-        />
-      )}
+        {role === "Employer" && (
+          <EmployerDashboard
+            summary={summary}
+            myPosts={myPosts}
+            applicants={applicants}
+            refreshMyPosts={refreshMyPosts}
+            onDelete={handleDelete}
+          />
+        )}
 
-      {role === "Job Seeker" && (
-        <JobSeekerDashboard
-          profileProgress={profileProgress}
-          appliedJobs={appliedJobs}
-          // savedJobs={savedJobs}
-          recommended={recommended}
-        />
-      )}
-    </div>
+        {role === "Job Seeker" && (
+          <JobSeekerDashboard
+            profileProgress={profileProgress}
+            appliedJobs={appliedJobs}
+            // savedJobs={savedJobs}
+            recommended={recommended}
+          />
+        )}
+      </div>
       <Contact />
       <Footer />
     </>

@@ -4,7 +4,7 @@ import { FaFacebookF, FaLinkedinIn, FaTwitter, FaYoutube, FaMapMarkerAlt, FaPhon
 const Footer = () => {
     return (
         <>
-            <footer className="h-70 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% text-white pt-10 pb-3">
+            <footer className="h-70 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% text-white pt-10 pb-3 font1">
                 <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-10">
                     {/* About Us */}
                     <div>

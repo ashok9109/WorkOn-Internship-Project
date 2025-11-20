@@ -48,24 +48,24 @@ const AppRouter = () => {
               element: <JobPage />
             },
             {
-              path:"create-job",
-              element:<CreateJobPage/>
+              path: "create-job",
+              element: <CreateJobPage />
             },
             {
-              path:"job-post",
-              element:<JobPostPage/>
+              path: "job-post",
+              element: <JobPostPage />
             },
             {
-              path:"applicants",
-              element:<ApplicantsPage/>
+              path: "applicants",
+              element: <ApplicantsPage />
             },
             {
-              path:"applicant/details/:id",
-              element:<ApplicantDetailsPage/>
+              path: "applicant/details/:id",
+              element: <ApplicantDetailsPage />
             },
             {
-              path:"jobs/details/:id",
-              element:<JobDetailsPage/>
+              path: "jobs/details/:id",
+              element: <JobDetailsPage />
             },
             {
               path: "services",
