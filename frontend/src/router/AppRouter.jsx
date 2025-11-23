@@ -3,7 +3,6 @@ import UserLayout from '../layout/UserLayout'
 import ProtectedRoutes from '../components/ProtectedRoutes'
 import HomeLayout from '../layout/HomeLayout'
 import HomePage from '../pages/HomePage'
-import MessagesLayout from '../layout/MessagesLayout'
 import MessagePage from '../pages/MessagePage'
 import DashboardPage from '../pages/DashboardPage'
 import ProfilePage from '../pages/ProfilePage'
@@ -15,6 +14,7 @@ import CreateJobPage from '../pages/CreateJobPage'
 import JobDetailsPage from '../pages/jobDetailsPage'
 import ApplicantDetailsPage from '../pages/ApplicantDetailsPage'
 import JobPostPage from '../pages/JobPostPage'
+import MessagesLayout from '../layout/MessagesLayout'
 
 const AppRouter = () => {
 
@@ -78,12 +78,10 @@ const AppRouter = () => {
             {
               path: "messages",
               element: <MessagesLayout />,
-              children: [
-                {
-                  path: "chat",
-                  element: <MessagePage />
-                }
-              ]
+              children: [{
+                path: "chat/:id",
+                element: <MessagePage />
+              }]
             }
           ]
         }

@@ -6,6 +6,7 @@ const profileRouter = require("./routes/profile.routes");
 const jobRouter = require("./routes/job.routes");
 const applicantsRouter = require("./routes/applicants.routes");
 const dashboardRouter = require("./routes/dashboard.routes");
+const messageRouter = require("./routes/message.routes");
 
 
 const app = express();
@@ -34,6 +35,9 @@ app.use("/api/job", jobRouter);
 
 // applicants api
 app.use("/api/applicants", applicantsRouter);
+
+// message api
+app.use("/api/message", messageRouter)
 
 
 module.exports = app;

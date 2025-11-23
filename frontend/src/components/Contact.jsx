@@ -1,6 +1,7 @@
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { FaBehance, FaDribbble, FaInstagram } from "react-icons/fa";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const TAGS = [
     "UI/UX design",
@@ -14,6 +15,11 @@ const Contact = () => {
     const [selectedTag, setSelectedTag] = useState("UI/UX design");
     const [form, setForm] = useState({ name: "", email: "", message: "" });
 
+    const serviceId = import.meta.env.VITE_SERVICE_ID;
+    const templateId = import.meta.env.VITE_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_PUBLIC_KEY;
+
+
     function handleTagClick(tag) {
         setSelectedTag(tag);
     }
@@ -22,9 +28,12 @@ const Contact = () => {
         setForm({ ...form, [e.target.name]: e.target.value });
     }
 
+
     function handleSubmit(e) {
         e.preventDefault();
-        // Handle sending message here
+        emailjs.send(serviceId, templateId, form, publicKey).then((res) => {
+            console.log("this the response", res)
+        });
         alert("Message sent!");
         setForm({ name: "", email: "", message: "" });
     }
@@ -36,7 +45,7 @@ const Contact = () => {
                 {/* Left Side */}
                 <div className="flex-1 text-white flex flex-col justify-center gap-8 max-w-sm">
                     <h2 className="text-3xl md:text-4xl font-semibold leading-tight">
-                        Les't talk<br />
+                        Let's talk<br />
                         on something <span className="text-teal-400">great</span><br />
                         together
                     </h2>
@@ -64,9 +73,6 @@ const Contact = () => {
                 {/* Right Side Form */}
                 <div className="flex-1 bg-white px-7 py-8 rounded-2xl shadow-xl max-w-lg">
                     <div className="mb-6">
-                        <label className="font-medium text-gray-700 mb-3 block">
-                            I'm interested in:
-                        </label>
                         <div className="flex flex-wrap gap-2 mb-2">
                             {TAGS.map(tag => (
                                 <button

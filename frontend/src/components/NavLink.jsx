@@ -47,7 +47,7 @@ const NavLink = () => {
             <div className='h-full w-60 flex  flex-col  gap-10 shadow-2xl border-1 border-gray-300 font10 mt-10 pt-5 pl-3' >
                 {navLink.map(({ label, icon: Icon, to }, idx) => {
 
-                    if (role === "Job Seeker" & (label === "Create Job" || label === "Applicants"  || label === "Job Post")) {
+                    if (role === "Job Seeker" & (label === "Create Jobs" || label === "Applicants"  || label === "Job Posts")) {
                         return null
                     }
 
