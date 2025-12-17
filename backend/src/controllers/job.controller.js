@@ -1,7 +1,9 @@
 const jobModel = require("../models/job.Model");
 
 
+// ----------------------------
 // create job controller
+// ----------------------------
 
 const createJobController = async (req, res) => {
 
@@ -31,6 +33,7 @@ const createJobController = async (req, res) => {
         });
 
         return res.status(200).json({
+            success: true,
             message: "job post created successfully",
             job
         })
@@ -38,12 +41,15 @@ const createJobController = async (req, res) => {
     } catch (error) {
         console.log("error in create job post ", error);
         res.status(500).json({
+            success: false,
             message: "server error while creating post"
         })
     }
 };
 
+// ---------------------------
 // get all job controller
+// ---------------------------
 
 const getAlljobcontroller = async (req, res) => {
     try {
@@ -54,6 +60,7 @@ const getAlljobcontroller = async (req, res) => {
             .populate("postedBy", "firstName lastName email");
 
         return res.status(200).json({
+            success: true,
             message: "Job post fetched successfully",
             job
         })
@@ -61,12 +68,15 @@ const getAlljobcontroller = async (req, res) => {
     } catch (error) {
         console.log("error in fetch the job post", error);
         res.status(500).json({
+            success: false,
             message: "server error in fetch job post"
         })
     }
 };
 
+// -------------------------------
 // get my job post controller
+// -------------------------------
 
 const getMyJobController = async (req, res) => {
     try {
@@ -85,6 +95,7 @@ const getMyJobController = async (req, res) => {
         }
 
         res.status(200).json({
+            success: true,
             message: "my jobs fetched successfully",
             jobs
         })
@@ -92,13 +103,17 @@ const getMyJobController = async (req, res) => {
     } catch (error) {
         console.log("error to get the single job post", error);
         res.status(500).json({
+            success: false,
             message: "error while fetching my jobs"
         })
 
     };
 };
 
+// ------------------------------
 // single job post controller
+// -------------------------------
+
 const singleJobPostController = async (req, res) => {
     try {
         const jobId = req.params.id;
@@ -110,6 +125,7 @@ const singleJobPostController = async (req, res) => {
         }
 
         res.status(200).json({
+            success: true,
             message: "Single job post fetched successfully",
             job,
         });
@@ -117,13 +133,16 @@ const singleJobPostController = async (req, res) => {
     } catch (error) {
         console.log("Error in fetching single job post", error);
         res.status(500).json({
+            success: false,
             message: "Server error",
         });
     }
 };
 
 
-// delete post controller
+// -------------------------
+// Delete post controller
+// --------------------------
 
 const deletePostController = async (req, res) => {
     try {
@@ -141,13 +160,17 @@ const deletePostController = async (req, res) => {
     } catch (error) {
         console.log("error to delete post");
         res.status(500).json({
+            success: false,
             message: "error while delete the post"
         })
     }
 };
 
 
+// ---------------------------------------------
 // dashboard controller for recently job posts
+// ----------------------------------------------
+
 const getRecentlyJobsController = async (req, res) => {
     try {
 
@@ -169,12 +192,14 @@ const getRecentlyJobsController = async (req, res) => {
             message: "Server error fetching recent jobs",
         });
     }
-}
+};
 
 
-module.exports = { createJobController,
-     getAlljobcontroller,
-      getMyJobController,
-       singleJobPostController, 
-       deletePostController,
-    getRecentlyJobsController };
+module.exports = {
+    createJobController,
+    getAlljobcontroller,
+    getMyJobController,
+    singleJobPostController,
+    deletePostController,
+    getRecentlyJobsController
+};

@@ -1,13 +1,15 @@
 import { axiosInstance } from "../config/axiosinstance";
 
-
-export const getAllChatUserApi = async()=>{
+// ------------------
+// get all user api
+// --------------------
+export const getAllChatUserApi = async () => {
     try {
         const respones = await axiosInstance.get("/api/message/all/chat-user");
-        if(respones){
+        if (respones) {
             return respones.data;
         }
     } catch (error) {
-        console.log("error in fetching the chat user ", error);
+        throw error.respones?.data || error;
     }
 };

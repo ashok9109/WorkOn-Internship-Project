@@ -8,19 +8,23 @@ const storageInstance = new imageKit({
 
 });
 
-const imageKitSendFiles = async(file, fileName)=>{
+// ----------------------------------------
+// funcation to upload file in imagekit
+// -----------------------------------------
+
+const imageKitSendFiles = async (file, fileName) => {
 
     try {
         const res = await storageInstance.upload({
             file,
             fileName,
-            folder:"profile"
+            folder: "profile"
         })
 
         return res
     } catch (error) {
         console.log("error in imagekit", error)
     }
-}
+};
 
 module.exports = imageKitSendFiles;

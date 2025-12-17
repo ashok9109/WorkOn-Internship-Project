@@ -3,7 +3,9 @@ const imageKitSendFiles = require("../services/storage.services");
 const { findByIdAndUpdate } = require("../models/user.model");
 
 
+// ------------------------------
 // create profile controller
+// ------------------------------
 
 const createProfileController = async (req, res) => {
 
@@ -63,18 +65,25 @@ const createProfileController = async (req, res) => {
         });
 
         res.status(201).json({
+            success: true,
             message: "profile details are saved",
             profile
         })
 
 
     } catch (error) {
-        console.log("error in profile controller", error)
+        console.log("error in profile controller", error);
+        return res.status(500).json({
+            success: false,
+            message: "error creating profile"
+        })
     }
 
 };
 
+// ----------------------------
 // upadate profile controller
+// ----------------------------
 
 const updateProfileController = async (req, res) => {
 
@@ -126,6 +135,7 @@ const updateProfileController = async (req, res) => {
         );
 
         return res.status(200).json({
+            success: true,
             message: "profile updated successfully",
             profile: updatedProfile
         })
@@ -134,13 +144,17 @@ const updateProfileController = async (req, res) => {
     } catch (error) {
         console.log("error in update profile");
         res.status(500).json({
-            message: "server error"
+            success: false,
+            message: "error in updating profile",
+            error: error
         })
     }
 
 };
 
+// -------------------------------
 // get profile data controller
+// -------------------------------
 
 const getProfileController = async (req, res) => {
     try {
@@ -164,7 +178,9 @@ const getProfileController = async (req, res) => {
 
 };
 
+// ------------------------------------------------------------------------------
 // this is the dashboard api controller for job seeker to so the profile progress
+// ------------------------------------------------------------------------------
 
 const getPorfileProgressController = async (req, res) => {
     try {
@@ -209,6 +225,7 @@ const getPorfileProgressController = async (req, res) => {
 
         res.status(200).json({
             success: true,
+            message: "profile progress fetched successfully ",
             percent,
         });
 
@@ -218,12 +235,10 @@ const getPorfileProgressController = async (req, res) => {
         res.status(500).json({
             success: false,
             message: "Server error while calculating profile progress",
+            error: error
         });
     }
-}
-
-
-
+};
 
 module.exports = {
     createProfileController,

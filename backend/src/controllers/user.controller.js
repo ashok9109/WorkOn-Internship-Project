@@ -3,7 +3,9 @@ const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
 const cacheClient = require("../services/cache.services");
 
+// ------------------------------
 // sign Up User Controller
+// ------------------------------
 
 const signupController = async (req, res) => {
 
@@ -48,6 +50,7 @@ const signupController = async (req, res) => {
         })
 
         return res.status(201).json({
+            success: true,
             message: "User is Registered Successfully",
             newUser: {
                 id: newUser.id,
@@ -55,15 +58,22 @@ const signupController = async (req, res) => {
                 username: newUser.username,
                 role: newUser.role
             }
-        })
-
+        });
+        ;
     } catch (error) {
         console.log("error in signup", error)
+        return res.status(500).json({
+            success: false,
+            message: "error in sign up",
+            error: error
+        });
 
-    }
+    };
 };
 
+// ---------------------------
 // Login User Controller
+// ---------------------------
 
 const loginController = async (req, res) => {
 
@@ -105,6 +115,7 @@ const loginController = async (req, res) => {
         });
 
         return res.status(200).json({
+            success: true,
             message: "User is LoggedIn",
             user: {
                 id: user.id,
@@ -117,11 +128,18 @@ const loginController = async (req, res) => {
 
     } catch (error) {
         console.log("error in login ", error);
-    }
+        return res.status(500).json({
+            success: false,
+            message: "error in login",
+            error: error
+        });
+    };
 
 };
 
+// -----------------------------
 // logout user controller
+// -----------------------------
 
 const logoutController = async (req, res) => {
 
@@ -139,18 +157,23 @@ const logoutController = async (req, res) => {
         res.clearCookie("token");
 
         return res.status(200).json({
+            success: true,
             message: "user is logout "
         })
     } catch (error) {
         console.log("error in logout", error)
         return res.status(500).json({
+            success: false,
             message: "Internal server error",
             error: error
         })
     }
 };
 
-// change password controller 
+// -----------------------------
+// change password controller
+// ------------------------------
+
 const changePasswordController = async (req, res) => {
     try {
         const userId = req.user._id;
@@ -195,9 +218,10 @@ const changePasswordController = async (req, res) => {
         res.status(500).json({
             success: false,
             message: "Server error changing password",
+            error:error
         });
-    }
-}
+    };
+};
 
 
 module.exports = {

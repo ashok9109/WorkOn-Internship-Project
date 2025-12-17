@@ -3,7 +3,10 @@ const jobModel = require("../models/job.Model");
 const profileModel = require("../models/profile.Model");
 
 
-// job apply controller 
+// ------------------------
+// job apply controller
+// ------------------------
+
 const applyJobController = async (req, res) => {
 
     try {
@@ -38,6 +41,7 @@ const applyJobController = async (req, res) => {
 
 
         res.status(201).json({
+            success: true,
             message: "Applied successfully",
             applicants: newApplications
         })
@@ -46,12 +50,15 @@ const applyJobController = async (req, res) => {
     } catch (error) {
         console.log("erro in apply for job", error);
         res.status(500).json({
+            success: false,
             message: "server error while applying jobs"
         })
     }
 };
 
-// my applicants controller
+//--------------------------------
+//  my applicants controller
+// ------------------------------
 
 const myApplicantsController = async (req, res) => {
     try {
@@ -77,6 +84,7 @@ const myApplicantsController = async (req, res) => {
 
 
         res.status(200).json({
+            success: true,
             message: "Applicants fetched successfully",
             applicants: applicantsList
         });
@@ -84,13 +92,16 @@ const myApplicantsController = async (req, res) => {
     } catch (error) {
         console.log("error fetching the my applicants ", error);
         res.status(500).json({
+            success: false,
             message: "error while fetching the my applicants"
         })
     }
 };
 
 
+// --------------------------------
 // single applicants controller
+// ---------------------------------
 
 const singleApplicantController = async (req, res) => {
     try {
@@ -100,7 +111,6 @@ const singleApplicantController = async (req, res) => {
         const applicant = await applicantsModel.findById(applicantId)
             .populate("job", "title company location")
             .populate("profile", " firstName lastName email number description dob age gender languages qualification experience resumeUrl photoUrl");
-
 
 
         if (!applicant) {
@@ -125,7 +135,9 @@ const singleApplicantController = async (req, res) => {
 };
 
 
+// -------------------------------------------------------------
 // it is dashboard api to show the applied jobs controller
+// -------------------------------------------------------------
 
 const getAppliedJobsController = async (req, res) => {
     try {

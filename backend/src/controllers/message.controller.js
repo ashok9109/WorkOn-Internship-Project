@@ -1,6 +1,8 @@
 const userModel = require("../models/user.model");
 
-
+// --------------------------
+// Get all user controller
+// --------------------------
 
 const getAllChatUserController = async (req, res) => {
     try {
@@ -43,4 +45,4 @@ const getAllChatUserController = async (req, res) => {
 };
 
 
-module.exports = { getAllChatUserController }
+module.exports = { getAllChatUserController };

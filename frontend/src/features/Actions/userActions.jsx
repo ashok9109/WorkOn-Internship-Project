@@ -1,34 +1,39 @@
 import { axiosInstance } from "../../config/axiosinstance";
 import { addUser, removeUser } from "../Reducers/userSlice";
 
+// --------------
 // signup api
+// ---------------
 export const userSignupApi = (Data) => async (dispatch) => {
     try {
         const res = await axiosInstance.post("/api/user/signup", Data);
         if (res) {
             console.log("User is Register")
-            return res.data.newUser
-
+            return res.data;
         }
     } catch (error) {
-        console.log("error in signup api", error)
+        throw error.res?.data || error;
     }
 };
 
+// ---------------
 // login api
+// ---------------
 export const userLoginApi = (Data) => async (dispatch) => {
     try {
-        const respones = await axiosInstance.post("/api/user/login", Data)
-        if (respones) {
-            dispatch(addUser(respones.data.user));
-            return respones.data.user
+        const response = await axiosInstance.post("/api/user/login", Data)
+        if (response) {
+            dispatch(addUser(response.data.user));
+            return response.data;
         }
     } catch (error) {
-        console.log("error in login api", error)
+        throw error.respones?.data || error;
     }
 };
 
+// ------------------
 // logout api
+// ------------------
 export const userLogoutApi = () => async (dispatch) => {
     try {
         const respones = await axiosInstance.post("api/user/logout");
@@ -36,6 +41,6 @@ export const userLogoutApi = () => async (dispatch) => {
             dispatch(removeUser());
         }
     } catch (error) {
-        console.log("error in logout api", error)
+        throw error.respones?.data  || error;
     }
 }

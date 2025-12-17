@@ -9,6 +9,10 @@ const connectDB = require("./src/db/db");
 const cacheClient = require("./src/services/cache.services");
 const MessageModel = require("./src/models/message.Model");
 
+
+// -----------------
+// mongodb fuction
+// ------------------
 connectDB()
 
 const io = socketio(httpServer, {
@@ -18,6 +22,10 @@ const io = socketio(httpServer, {
         credentials: true,
     }
 })
+
+// ---------------------------
+// socket conections
+// -----------------------------
 
 const onlineUser = [];
 
@@ -61,7 +69,9 @@ io.on("connection", (socket) => {
     });
 });
 
-
+// --------------------------
+// Redis connections
+// --------------------------
 
 cacheClient.on("connect", () => {
     console.log("Redis is connected successfully")

@@ -8,11 +8,13 @@ const applicantsRouter = require("./routes/applicants.routes");
 const dashboardRouter = require("./routes/dashboard.routes");
 const messageRouter = require("./routes/message.routes");
 
-
 const app = express();
 
 app.use(express.json());
 
+// ----------------
+// cors origin
+// ----------------
 app.use(cors({
     origin: "http://localhost:5173",
     credentials: true
@@ -21,22 +23,34 @@ app.use(cors({
 app.use(cookieParser())
 
 
+// ----------------
 // user api
+// -----------------
 app.use("/api/user", userRouter);
 
+// ----------------
 // dashboard api
+// -----------------
 app.use("/api/dashboard", dashboardRouter);
 
+// -----------------
 // profile api
+// ------------------
 app.use("/api/user", profileRouter);
 
-//job api 
+//--------------
+// job api 
+// --------------
 app.use("/api/job", jobRouter);
 
+// -----------------
 // applicants api
+// ------------------
 app.use("/api/applicants", applicantsRouter);
 
+// ----------------
 // message api
+// -----------------
 app.use("/api/message", messageRouter)
 
 

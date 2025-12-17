@@ -2,7 +2,9 @@ const applicantsModel = require("../models/applicants.Model");
 const jobModel = require("../models/job.Model");
 
 
-
+// -----------------------
+// Dashboard  summary api
+// ------------------------
 const dashboardSummaryController = async (req, res) => {
     try {
 
