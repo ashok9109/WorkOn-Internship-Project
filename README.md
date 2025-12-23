@@ -1,0 +1,1 @@
+WorkOn is a full-stack job portal web application designed to connect job seekers and employers on a single platform. Job seekers can create profiles, upload resumes, apply for jobs, and track their application status. Employers can post job listings, manage applicants, and view real-time dashboard analytics.
