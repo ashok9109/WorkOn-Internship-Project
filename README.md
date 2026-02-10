@@ -1,11 +1,11 @@
-# Work-On – Job Portal Web Application
+# Work-On – ( Job Portal Web Application )
 
 A full-stack Job Portal web application built using the MERN stack that connects job seekers with employers.  
 The platform allows employers to post jobs and manage applications, while job seekers can search and apply for jobs with role-based access control.
 
 ---
 
-## 🚀 Features
+## 🚀 Features:-
 
 - User Authentication & Authorization using JWT
 - Role-based access: Admin, Employer, Job Seeker
@@ -17,7 +17,7 @@ The platform allows employers to post jobs and manage applications, while job se
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack:-
 
 **Frontend:** React.js, Tailwind CSS  
 **Backend:** Node.js, Express.js  
@@ -27,7 +27,7 @@ The platform allows employers to post jobs and manage applications, while job se
 
 ---
 
-## ⚙️ Installation & Setup
+## ⚙️ Installation & Setup:-
 
 ```bash
 git clone https://github.com/ashok9109/WorkOn-Internship-Project.git
