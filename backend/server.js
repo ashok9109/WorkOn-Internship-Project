@@ -6,7 +6,7 @@ const httpServer = http.createServer(app);
 const socketio = require("socket.io");
 const cors = require("cors");
 const connectDB = require("./src/db/db");
-const cacheClient = require("./src/services/cache.services");
+// const cacheClient = require("./src/services/cache.services");
 const MessageModel = require("./src/models/message.Model");
 
 
@@ -73,13 +73,13 @@ io.on("connection", (socket) => {
 // Redis connections
 // --------------------------
 
-cacheClient.on("connect", () => {
-    console.log("Redis is connected successfully")
-});
+// cacheClient.on("connect", () => {
+//     console.log("Redis is connected successfully")
+// });
 
-cacheClient.on("error", (error) => {
-    console.log("error in redis", error)
-});
+// cacheClient.on("error", (error) => {
+//     console.log("error in redis", error)
+// });
 
 httpServer.listen(3000, () => {
     console.log("Server + Socket.io running on port 3000");

@@ -1,7 +1,7 @@
 const userModel = require("../models/user.model");
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken");
-const cacheClient = require("../services/cache.services");
+// const cacheClient = require("../services/cache.services");
 
 // ------------------------------
 // sign Up User Controller
@@ -152,7 +152,7 @@ const logoutController = async (req, res) => {
             })
         }
 
-        await cacheClient.set(token, "blacklisted")
+        // await cacheClient.set(token, "blacklisted")
 
         res.clearCookie("token");
 

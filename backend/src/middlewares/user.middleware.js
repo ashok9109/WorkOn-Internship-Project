@@ -1,6 +1,6 @@
 const jwt  = require("jsonwebtoken");
 const userModel = require("../models/user.model");
-const cacheClient = require("../services/cache.services");
+// const cacheClient = require("../services/cache.services");
 
 // ----------------------------
 // auth middleware
@@ -15,13 +15,13 @@ const userMiddleware = async(req, res, next)=>{
             })
         }
 
-        const blacklisted = await cacheClient.get(token)
+        // const blacklisted = await cacheClient.get(token)
 
-        if(blacklisted){
-            return res.status(401).json({
-                message:"Token is blacklisted"
-            })
-        }
+        // if(blacklisted){
+        //     return res.status(401).json({
+        //         message:"Token is blacklisted"
+        //     })
+        // }
 
         const decode = jwt.verify(token, process.env.JWT_SECRET) 
 
