@@ -81,6 +81,6 @@ io.on("connection", (socket) => {
 //     console.log("error in redis", error)
 // });
 
-httpServer.listen(3000, () => {
+httpServer.listen(process.env.PORT, () => {
     console.log("Server + Socket.io running on port 3000");
 });
